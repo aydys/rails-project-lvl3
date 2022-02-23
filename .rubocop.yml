@@ -12,3 +12,11 @@ Style/ClassAndModuleChildren:
   Enabled: false
 Rails/NotNullColumn:
   Enabled: false
+Style/RedundantFetchBlock:
+  Enabled: false
+Rails/FilePath:
+  Enabled: false
+Style/GlobalStdStream:
+  Enabled: false
+Style/FrozenStringLiteralComment:
+  Enabled: false
