@@ -25,11 +25,11 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
+gem 'rollbar'
 gem 'rubocop-rails', require: false
 gem 'simple_form'
 gem 'slim_lint', require: false
 gem 'slim-rails'
-gem 'rollbar'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
