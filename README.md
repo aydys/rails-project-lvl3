@@ -4,6 +4,8 @@
 
 [![Actions Status](https://github.com/aydys/rails-project-lvl3/workflows/CI/badge.svg)](https://github.com/aydys/rails-project-lvl3/actions)
 
+[Ссылка на проект](https://rocky-escarpment-55774.herokuapp.com/)
+
 ### Системные требования
 
 - Ruby
