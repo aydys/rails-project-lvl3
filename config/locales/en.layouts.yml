@@ -1,0 +1,6 @@
+en:
+  layouts:
+    shared:
+      nav:
+        board: Bulletin board
+        sign_in: Sign in

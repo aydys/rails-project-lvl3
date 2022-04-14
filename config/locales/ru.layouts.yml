@@ -1,0 +1,6 @@
+ru:
+  layouts:
+    shared:
+      nav:
+        board: Доска объявлений
+        sign_in: Войти
