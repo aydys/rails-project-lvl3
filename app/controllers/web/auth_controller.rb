@@ -1,5 +1,3 @@
 class Web::AuthController < ApplicationController
-  def callback
-    debugger
-  end
+  def callback; end
 end
