@@ -24,4 +24,7 @@ start:
 seed:
 	bin/rails db:seed
 
+copy_env_template:
+	cat .env.example > .env
+
 .PHONY: test
