@@ -1,0 +1,5 @@
+- flash.any?
+  - flash.each do |_, msg|
+    .container.alert.alert-info.alert-dismissible.fade.show role='alert'
+      == msg
+      button.btn-close type='button' data-bs-dismiss='alert' aria-hidden='true'
