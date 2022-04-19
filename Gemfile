@@ -22,8 +22,8 @@ gem 'jbuilder', '~> 2.7'
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use Active Storage variant
-# gem 'image_processing', '~> 1.2'
-
+gem 'image_processing', '~> 1.2'
+gem 'rails-i18n', '~> 6.0.0'
 gem 'rollbar'
 gem 'rubocop-rails', require: false
 gem 'simple_form'
@@ -33,9 +33,9 @@ gem 'slim-rails'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
+gem 'active_storage_validations'
 gem 'omniauth-github'
 gem 'omniauth-rails_csrf_protection'
-gem 'active_storage_validations'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -62,6 +62,7 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'faker'
+  gem 'minitest-power_assert'
   gem 'webdrivers'
 end
 
