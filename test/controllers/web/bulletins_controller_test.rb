@@ -23,7 +23,7 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
 
   test 'should create bulletin' do
     sign_in @user
-    post bulletins_url, params: { bulletins: @attrs }
+    post bulletins_url, params: { bulletin: @attrs }
     bulletin = Bulletin.find_by title: @attrs[:title]
     assert { bulletin.description == @attrs[:description] }
     assert_redirected_to root_url

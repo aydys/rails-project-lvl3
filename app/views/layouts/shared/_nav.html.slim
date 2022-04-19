@@ -5,8 +5,9 @@
       ul.nav.nav-pills.flex-grow-1.navbar-nav.me-auto
         li.nav-item.me-2
           = link_to 'Главная', root_path, class: 'nav-link text-dark'
-        li.nav-item.me-2
-          = link_to 'Добавить', new_bulletin_path, class: 'nav-link text-dark'
+        - if signed_in?
+          li.nav-item.me-2
+            = link_to 'Добавить', new_bulletin_path, class: 'nav-link text-dark'
   ul.nav.nav-pills
     li.nav-item.me-2
       - if session[:user_id]

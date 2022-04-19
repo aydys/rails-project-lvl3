@@ -19,7 +19,7 @@ class Web::BulletinsController < ApplicationController
   private
 
   def bulletin_params
-    params.require(:bulletins).permit(
+    params.require(:bulletin).permit(
       :title,
       :description,
       :category_id,
