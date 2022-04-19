@@ -3,11 +3,11 @@
 bulletin_1:
   title: Title_1
   description: MyText_1
-  user: one
-  category: category_1
+  author: one
+  category: category1
 
 bulletin_2:
   title: Title_2
   description: MyText_2
-  user: two
-  category: category_2
+  author: two
+  category: category2
