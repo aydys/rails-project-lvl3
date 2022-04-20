@@ -3,6 +3,7 @@ require 'test_helper'
 class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @user = users :one
+    @bulletin = bulletins :bulletin1
     @attrs = {
       title: Faker::Food.dish,
       description: Faker::Food.description,
@@ -27,5 +28,11 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
     bulletin = Bulletin.find_by title: @attrs[:title]
     assert { bulletin.description == @attrs[:description] }
     assert_redirected_to root_url
+  end
+
+  test 'should get show' do
+    get bulletin_url @bulletin
+
+    assert_response :success
   end
 end

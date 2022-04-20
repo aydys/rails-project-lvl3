@@ -16,6 +16,10 @@ class Web::BulletinsController < ApplicationController
     end
   end
 
+  def show
+    @bulletin = Bulletin.find params[:id]
+  end
+
   private
 
   def bulletin_params

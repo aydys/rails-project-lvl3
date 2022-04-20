@@ -1,0 +1,8 @@
+image_blob:
+  key: scxrex8xx73inir3c6216mrmowv0
+  service_name: test
+  filename: hexlet.jpg
+  content_type: image/jpeg
+  metadata: '{"identified":true,"analyzed":true}'
+  byte_size: <%= File.size(Rails.root.join('test', 'fixtures', 'files', 'hexlet.jpg')) %>
+  checksum: <%= Digest::MD5.file(Rails.root.join('test', 'fixtures', 'files', 'hexlet.jpg')).base64digest %>

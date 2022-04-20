@@ -1,0 +1,8 @@
+image_attachment:
+  name: image
+  record: bulletin1 (Bulletin)
+  blob: image_blob
+image_attachment2:
+  name: image
+  record: bulletin2 (Bulletin)
+  blob: image_blob
