@@ -1,9 +1,15 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
+DEFAULTS: &DEFAULTS
+  name: $LABEL
+  email: $LABEL@test.io
+  admin: false
 one:
-  name: MyString
-  email: MyString
+  <<: *DEFAULTS
 
 two:
-  name: MyString
-  email: MyString
+  <<: *DEFAULTS
+
+admin:
+  <<: *DEFAULTS
+  admin: true
