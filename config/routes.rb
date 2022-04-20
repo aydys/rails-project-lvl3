@@ -6,6 +6,6 @@ Rails.application.routes.draw do
 
     resource :session, only: %i[destroy]
 
-    resources :bulletins, only: %i[index new create]
+    resources :bulletins, only: %i[index new create show]
   end
 end
