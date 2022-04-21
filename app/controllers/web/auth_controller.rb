@@ -1,4 +1,4 @@
-class Web::AuthController < ApplicationController
+class Web::AuthController < Web::ApplicationController
   def callback
     email = auth[:info][:email].downcase
     existing_user = User.find_by(email: email)

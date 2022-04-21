@@ -1,4 +1,4 @@
-class Web::BulletinsController < ApplicationController
+class Web::BulletinsController < Web::ApplicationController
   def index
     @bulletins = Bulletin.by_recently_created
   end
