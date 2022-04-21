@@ -1,0 +1,13 @@
+doctype html
+html.h-100
+  head
+    = render 'layouts/shared/head'
+  body.d-flex.flex-column.h-100
+    .container.mb-2
+      = render 'layouts/shared/nav'
+    = render 'layouts/shared/flash'
+    main.container
+      .row
+        = render 'layouts/web/admin/sidebar'
+        .col-md-9
+          = yield
