@@ -7,7 +7,8 @@
         th Действия
     tbody
       - @bulletins.each do |bulletin|
-        td
-          = link_to bulletin.title, bulletin_path(bulletin)
-        td = time_ago_in_words(bulletin.created_at)
-        td = link_to 'Показать', bulletin_path(bulletin)
+        tr
+          td
+            = link_to bulletin.title, bulletin_path(bulletin)
+          td = time_ago_in_words(bulletin.created_at)
+          td = link_to 'Показать', bulletin_path(bulletin)
