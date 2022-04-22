@@ -13,11 +13,13 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should get index' do
+    sign_in @user
     get bulletins_url
     assert_response :success
   end
 
   test 'should get new' do
+    sign_in @user
     get new_bulletin_url
     assert_response :success
   end
@@ -31,8 +33,8 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should get show' do
+    sign_in @user
     get bulletin_url @bulletin
-
     assert_response :success
   end
 end
