@@ -18,4 +18,17 @@ class Web::Admin::CategoriesControllerTest < ActionDispatch::IntegrationTest
       get admin_categories_url
     end
   end
+
+  test 'should get new' do
+    sign_in @admin
+    get new_admin_category_url
+    assert_response :success
+  end
+
+  test 'regular user has no access to new' do
+    assert_raises(Pundit::NotAuthorizedError) do
+      sign_in @regular_user
+      get new_admin_category_url
+    end
+  end
 end

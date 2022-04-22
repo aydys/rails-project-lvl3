@@ -6,6 +6,8 @@ class Web::Admin::CategoriesController < Web::Admin::ApplicationController
   end
 
   def new
+    @category = Category.new
+    authorize [:admin, @category]
   end
 
   def create
