@@ -27,4 +27,7 @@ seed:
 copy_env_template:
 	cat .env.example > .env
 
+test_debug:
+	PARALLEL_WORKERS=1 rails test
+
 .PHONY: test
