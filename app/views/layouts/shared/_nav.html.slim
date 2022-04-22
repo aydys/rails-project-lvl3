@@ -10,7 +10,7 @@
             = link_to 'Добавить', new_bulletin_path, class: 'nav-link text-dark'
   ul.nav.nav-pills
     li.nav-item.me-2
-      - if current_user.admin?
+      - if signed_in? && current_user.admin?
         = link_to 'Админка', admin_root_path, class: 'nav-link text-dark'
     li.nav-item.me-2
       - if signed_in?
