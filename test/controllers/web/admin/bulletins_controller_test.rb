@@ -15,8 +15,7 @@ class Web::Admin::BulletinsControllerTest < ActionDispatch::IntegrationTest
   test 'regular user cannt get index' do
     assert_raises(Pundit::NotAuthorizedError) do
       sign_in @regular_user
-      get admin_bulletins_url
-      assert_response :success        
+      get admin_bulletins_url      
     end
   end
 end

@@ -1,0 +1,16 @@
+h1.h2.mb-4 Категории
+= link_to "Добавить категорию", new_admin_category_path
+.row.mt-2
+  table.table.table-borderless
+    thead
+      tr
+        th Id
+        th Название
+        th Действия
+    tbody
+      - @categories.each_with_index do |category, index|
+        tr
+          td = index + 1
+          td = category.name
+          td
+            = link_to 'Редактировать', edit_admin_category_path(category)
