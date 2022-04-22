@@ -8,7 +8,8 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
       title: Faker::Food.dish,
       description: Faker::Food.description,
       category_id: categories(:category1).id,
-      image: fixture_file_upload('hexlet.jpg', 'image/jpg')
+      image: fixture_file_upload('hexlet.jpg', 'image/jpg'),
+      author_id: @user
     }
   end
 
@@ -18,10 +19,22 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test 'guest should raise error from new' do
+    assert_raises(Pundit::NotAuthorizedError) do
+      get new_bulletin_url
+    end
+  end
+
   test 'should get new' do
     sign_in @user
     get new_bulletin_url
     assert_response :success
+  end
+  
+  test 'guest cant create bulletin' do
+    assert_raises(Pundit::NotAuthorizedError) do
+      post bulletins_url, params: { bulletin: @attrs }
+    end
   end
 
   test 'should create bulletin' do
