@@ -4,6 +4,10 @@ class Web::Admin::CategoriesControllerTest < ActionDispatch::IntegrationTest
   setup do
     @admin = users :admin
     @regular_user = users :one
+
+    @attrs = {
+      name: Faker::Food.dish
+    }
   end
 
   test 'should get index' do
@@ -29,6 +33,21 @@ class Web::Admin::CategoriesControllerTest < ActionDispatch::IntegrationTest
     assert_raises(Pundit::NotAuthorizedError) do
       sign_in @regular_user
       get new_admin_category_url
+    end
+  end
+
+  test 'should create new category' do
+    sign_in @admin
+    post admin_categories_url(params: { category: @attrs})
+    category = Category.find_by(name: @attrs[:name])
+    assert category
+    assert_redirected_to admin_categories_url
+  end
+
+  test 'regular user has no access to create' do
+    assert_raises(Pundit::NotAuthorizedError) do
+      sign_in @regular_user
+      post admin_categories_url(params: {category: @attrs})
     end
   end
 end
