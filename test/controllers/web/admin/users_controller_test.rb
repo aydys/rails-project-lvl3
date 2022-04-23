@@ -10,7 +10,7 @@ class Web::Admin::UsersControllerTest < ActionDispatch::IntegrationTest
   test 'should get index' do
     sign_in @admin
     get admin_users_url
-    assert_response :success  
+    assert_response :success
   end
 
   test 'regular user has no access to index' do
@@ -24,7 +24,7 @@ class Web::Admin::UsersControllerTest < ActionDispatch::IntegrationTest
     sign_in @admin
     delete admin_user_url(@user)
     assert_response :redirect
-    assert { !User.exists?(email: @user[:email])}
+    assert { !User.exists?(email: @user[:email]) }
     assert_redirected_to admin_users_url
   end
 

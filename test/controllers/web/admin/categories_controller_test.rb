@@ -1,4 +1,4 @@
-require "test_helper"
+require 'test_helper'
 
 class Web::Admin::CategoriesControllerTest < ActionDispatch::IntegrationTest
   setup do
@@ -38,7 +38,7 @@ class Web::Admin::CategoriesControllerTest < ActionDispatch::IntegrationTest
 
   test 'should create new category' do
     sign_in @admin
-    post admin_categories_url(params: { category: @attrs})
+    post admin_categories_url(params: { category: @attrs })
     category = Category.find_by(name: @attrs[:name])
     assert category
     assert_redirected_to admin_categories_url
@@ -47,7 +47,7 @@ class Web::Admin::CategoriesControllerTest < ActionDispatch::IntegrationTest
   test 'regular user has no access to create' do
     assert_raises(Pundit::NotAuthorizedError) do
       sign_in @regular_user
-      post admin_categories_url(params: {category: @attrs})
+      post admin_categories_url(params: { category: @attrs })
     end
   end
 

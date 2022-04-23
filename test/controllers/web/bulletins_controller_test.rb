@@ -30,7 +30,7 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
     get new_bulletin_url
     assert_response :success
   end
-  
+
   test 'guest cant create bulletin' do
     assert_raises(Pundit::NotAuthorizedError) do
       post bulletins_url, params: { bulletin: @attrs }

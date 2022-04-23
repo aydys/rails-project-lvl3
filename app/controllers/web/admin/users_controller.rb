@@ -9,7 +9,7 @@ class Web::Admin::UsersController < Web::Admin::ApplicationController
   def destroy
     user = User.find params[:id]
     authorize [:admin, user]
-    
+
     if user.destroy
       redirect_to admin_users_path, notice: 'User successfully deleted'
     else
