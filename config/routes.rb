@@ -11,7 +11,7 @@ Rails.application.routes.draw do
       root 'bulletins#moderate'
 
       resources :bulletins, only: :index
-      resources :users, only: %i[index edit destroy]
+      resources :users, only: %i[index destroy]
       resources :categories, except: %i[show]
     end
   end
