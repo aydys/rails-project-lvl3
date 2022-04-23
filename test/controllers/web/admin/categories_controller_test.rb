@@ -63,4 +63,19 @@ class Web::Admin::CategoriesControllerTest < ActionDispatch::IntegrationTest
       get edit_admin_category_url @category
     end
   end
+
+  test 'should update category' do
+    sign_in @admin
+    patch admin_category_url(@category), params: { category: @attrs }
+    category = Category.find_by(name: @attrs[:name])
+    assert category
+    assert_redirected_to admin_categories_path
+  end
+
+  test 'regular user has no access to update' do
+    assert_raises(Pundit::NotAuthorizedError) do
+      sign_in @regular_user
+      patch admin_category_url(@category), params: { category: @attrs }
+    end
+  end
 end
