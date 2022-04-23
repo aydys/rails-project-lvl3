@@ -1,3 +1,3 @@
 class User < ApplicationRecord
-  has_many :bulletins, dependent: :destroy
+  has_many :bulletins, foreign_key: 'author_id', dependent: :destroy
 end
