@@ -78,4 +78,19 @@ class Web::Admin::CategoriesControllerTest < ActionDispatch::IntegrationTest
       patch admin_category_url(@category), params: { category: @attrs }
     end
   end
+
+  test 'admin can destroy category' do
+    sign_in @admin
+    delete admin_category_url(@category)
+    assert_response :redirect
+    assert { !Category.exists?(@category.id) }
+    assert_redirected_to admin_categories_path
+  end
+
+  test 'regular user has no access to delete category' do
+    assert_raises(Pundit::NotAuthorizedError) do
+      sign_in @regular_user
+      delete admin_category_url(@category)
+    end
+  end
 end

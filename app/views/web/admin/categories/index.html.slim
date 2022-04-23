@@ -13,4 +13,7 @@ h1.h2.mb-4 Категории
           td = index + 1
           td = category.name
           td
-            = link_to 'Редактировать', edit_admin_category_path(category)
+            = link_to 'Редактировать', edit_admin_category_path(category),
+              class: 'me-1'
+            = link_to 'Удалить', admin_category_path(category),
+              method: :delete, confirmation: true, class: 'text-danger me-1'

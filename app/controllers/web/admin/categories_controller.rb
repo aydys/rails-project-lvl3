@@ -37,6 +37,15 @@ class Web::Admin::CategoriesController < Web::Admin::ApplicationController
   end
 
   def destroy
+    category = Category.find params[:id]
+    authorize [:admin, category]
+
+    if category.destroy
+      redirect_to admin_categories_path, notice: 'Category successfully deleted'
+    else
+      flash.now[:error] = 'Произошла ошибка'
+      render :index
+    end
   end
 
   private
