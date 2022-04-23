@@ -21,6 +21,8 @@ class Web::Admin::CategoriesController < Web::Admin::ApplicationController
   end
 
   def edit
+    @category = Category.find params[:id]
+    authorize [:admin, @category]
   end
 
   def show

@@ -4,7 +4,7 @@ class Web::Admin::CategoriesControllerTest < ActionDispatch::IntegrationTest
   setup do
     @admin = users :admin
     @regular_user = users :one
-
+    @category = categories :category1
     @attrs = {
       name: Faker::Food.dish
     }
@@ -48,6 +48,19 @@ class Web::Admin::CategoriesControllerTest < ActionDispatch::IntegrationTest
     assert_raises(Pundit::NotAuthorizedError) do
       sign_in @regular_user
       post admin_categories_url(params: {category: @attrs})
+    end
+  end
+
+  test 'should get edit' do
+    sign_in @admin
+    get edit_admin_category_url @category
+    assert_response :success
+  end
+
+  test 'regular user has no access to edit' do
+    assert_raises(Pundit::NotAuthorizedError) do
+      sign_in @regular_user
+      get edit_admin_category_url @category
     end
   end
 end
