@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
       resources :bulletins, only: :index
       resources :users, only: %i[index edit destroy]
-      resources :categories
+      resources :categories, except: %i[show]
     end
   end
 end

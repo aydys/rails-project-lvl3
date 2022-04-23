@@ -25,7 +25,7 @@ class Web::Admin::CategoriesController < Web::Admin::ApplicationController
     authorize [:admin, @category]
   end
 
-  def show
+  def update
   end
 
   def destroy
