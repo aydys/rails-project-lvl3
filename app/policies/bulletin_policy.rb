@@ -6,4 +6,12 @@ class BulletinPolicy < ApplicationPolicy
   def create?
     user
   end
+
+  def edit?
+    update?
+  end
+
+  def update?
+    user
+  end
 end

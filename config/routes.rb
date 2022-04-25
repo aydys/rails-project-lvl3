@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     get 'auth/:provider/callback', to: 'auth#callback', as: :callback_auth
 
     resource :session, only: %i[destroy]
-    resources :bulletins, only: %i[index new create show]
+    resources :bulletins, except: :destroy
 
     namespace :admin do
       root 'bulletins#moderate'
@@ -13,6 +13,10 @@ Rails.application.routes.draw do
       resources :bulletins, only: :index
       resources :users, only: %i[index destroy]
       resources :categories, except: %i[show]
+    end
+
+    namespace :profile do
+      root 'bulletins#index'
     end
   end
 end

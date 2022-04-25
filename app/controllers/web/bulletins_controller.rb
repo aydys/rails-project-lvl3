@@ -24,6 +24,21 @@ class Web::BulletinsController < Web::ApplicationController
     @bulletin = Bulletin.find params[:id]
   end
 
+  def edit
+    @bulletin = Bulletin.find params[:id]
+    authorize @bulletin
+  end
+
+  def update
+    bulletin = Bulletin.find params[:id]
+    authorize bulletin
+    if bulletin.update bulletin_params
+      redirect_to profile_root_path, notice: 'Bulletin successfully updated'
+    else
+      redirect_to profile_root_path, alert: 'Failed'
+    end
+  end
+
   private
 
   def bulletin_params

@@ -50,4 +50,30 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
     get bulletin_url @bulletin
     assert_response :success
   end
+
+  test 'should get edit' do
+    sign_in @user
+    get edit_bulletin_url @bulletin
+    assert_response :success
+  end
+
+  test 'guest should raise error from edit' do
+    assert_raises(Pundit::NotAuthorizedError) do
+      get edit_bulletin_url @bulletin
+    end
+  end
+
+  test 'should update bulletin' do
+    sign_in @user
+    patch bulletin_url(@bulletin), params: { bulletin: @attrs }
+    bulletin = Bulletin.find @bulletin.id
+    assert { bulletin.title == @attrs[:title] }
+    assert_redirected_to profile_root_url
+  end
+
+  test 'guest cannot update bulletin' do
+    assert_raises(Pundit::NotAuthorizedError) do
+      patch bulletin_url(@bulletin), params: { bulletin: @attrs }      
+    end
+  end
 end
