@@ -1,4 +1,6 @@
 class Bulletin < ApplicationRecord
+  include AASM
+
   belongs_to :author, class_name: 'User'
   belongs_to :category
 
@@ -10,4 +12,28 @@ class Bulletin < ApplicationRecord
                     size: { less_than: 5.megabytes, message: 'is not given between size' }
 
   scope :by_recently_created, -> { order(created_at: :desc) }
+
+  aasm column: 'state' do
+    state :draft, initial: true
+    state :under_moderation
+    state :published
+    state :rejected
+    state :archived
+
+    event :moderate do
+      transitions from: :draft, to: %i[archive under_moderation]
+    end
+
+    event :publish do
+      transitions from: :under_moderation, to: :published
+    end
+
+    event :reject do
+      transitions from: :under_moderation, to: :rejected
+    end
+
+    event :archive do
+      transitions from: %i[draft published rejected], to: :archived
+    end
+  end
 end
