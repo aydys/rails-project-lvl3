@@ -1,0 +1,15 @@
+.p-3.bg-light
+  = search_form_for @query, url: profile_root_path do |f|
+    .row.my-2
+      .col-6
+        .form-group.mb-3
+          = f.search_field :title_cont, class: 'form-control'
+          small.form-text.text-muted Искать по названию объявления
+      .col-4
+        .form-group.mb-3
+          = f.input :state_eq, as: :select, collection: Bulletin.aasm.states.map(&:name), label: false,
+            include_blank: true, class: 'form-control'
+          small.form-text.text-muted По состоянию
+      .col-2
+        = f.button :submit, 'Искать', class: 'btn btn-primary me-2'
+        = link_to 'Сброс', profile_root_path, class: 'btn btn-outline-primary'
