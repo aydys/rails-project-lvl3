@@ -2,7 +2,7 @@ class Web::BulletinsController < Web::ApplicationController
   after_action :verify_authorized, except: %i[index show]
 
   def index
-    @bulletins = Bulletin.by_recently_created
+    @bulletins = Bulletin.published.by_recently_created
   end
 
   def new
