@@ -73,17 +73,12 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
 
   test 'guest cannot update bulletin' do
     assert_raises(Pundit::NotAuthorizedError) do
-      patch bulletin_url(@bulletin), params: { bulletin: @attrs }      
+      patch bulletin_url(@bulletin), params: { bulletin: @attrs }
     end
   end
 
   test 'should change state to under_moderation' do
-    bulletin = bulletins :on_draft
-    sign_in @user
-    patch_with_referer bulletin_moderate_url(bulletin), { bulletin: @attrs }
-    assert_response :redirect
-    bulletin.reload
-    assert { bulletin.under_moderation? }
+    test_state(:on_draft, 'moderate', 'under_moderation')
   end
 
   test 'guest cannot change state to under_moderation' do
@@ -94,12 +89,7 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should change state to archive from draft' do
-    bulletin = bulletins :on_draft
-    sign_in @user
-    patch_with_referer bulletin_archive_url(bulletin), { bulletin: @attrs }
-    assert_response :redirect
-    bulletin.reload
-    assert { bulletin.archived? }
+    test_state(:on_draft, 'archive', 'archived')
   end
 
   test 'guest cannot change state to archived' do
@@ -110,47 +100,33 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should change state to archive from under_moderation' do
-    bulletin = bulletins :under_moderation
-    sign_in @user
-    patch_with_referer bulletin_archive_url(bulletin), { bulletin: @attrs }
-    assert_response :redirect
-    bulletin.reload
-    assert { bulletin.archived? }
+    test_state(:under_moderation, 'archive', 'archived')
   end
 
   test 'should change state to archive from rejected' do
-    bulletin = bulletins :rejected
-    sign_in @user
-    patch_with_referer bulletin_archive_url(bulletin), { bulletin: @attrs }
-    assert_response :redirect
-    bulletin.reload
-    assert { bulletin.archived? }
+    test_state(:rejected, 'archive', 'archived')
   end
 
   test 'should change state to archive from published' do
-    bulletin = bulletins :published
-    sign_in @user
-    patch_with_referer bulletin_archive_url(bulletin), { bulletin: @attrs }
-    assert_response :redirect
-    bulletin.reload
-    assert { bulletin.archived? }
+    test_state(:published, 'archive', 'archived')
   end
 
   test 'should change state from under_moderation to published' do
-    bulletin = bulletins :under_moderation
-    sign_in users :admin
-    patch_with_referer bulletin_publish_url(bulletin), { bulletin: @attrs }
-    assert_response :redirect
-    bulletin.reload
-    assert { bulletin.published? }
+    test_state(:under_moderation, 'publish', 'published')
   end
 
   test 'should change state from under_moderation to reject' do
-    bulletin = bulletins :under_moderation
+    test_state(:under_moderation, 'reject', 'rejected')
+  end
+
+  private
+
+  def test_state(prev_state_bulletin, event, next_state)
+    bulletin = bulletins prev_state_bulletin
     sign_in users :admin
-    patch_with_referer bulletin_reject_url(bulletin), { bulletin: @attrs }
+    patch_with_referer send("bulletin_#{event}_url", bulletin), { bulletin: @attrs }
     assert_response :redirect
     bulletin.reload
-    assert { bulletin.rejected? }
+    assert { bulletin.send("#{next_state}?") }
   end
 end

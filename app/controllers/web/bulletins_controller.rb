@@ -61,12 +61,12 @@ class Web::BulletinsController < Web::ApplicationController
     events = Bulletin.aasm.events.map(&:name)
     bulletin = Bulletin.find params[:id]
     authorize bulletin
-    if events.include?(event)
-      if bulletin.send("#{event}!")
-        redirect_to request.referer, notice: "Bulletin successfully #{reached_state}"
-      else
-        redirect_to request.referer, alert: 'Failed'
-      end
+    return unless events.include? event
+
+    if bulletin.send("#{event}!")
+      redirect_to request.referer, notice: "Bulletin successfully #{reached_state}"
+    else
+      redirect_to request.referer, alert: 'Failed'
     end
   end
 

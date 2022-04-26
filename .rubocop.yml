@@ -23,3 +23,7 @@ Style/GlobalStdStream:
   Enabled: false
 Style/FrozenStringLiteralComment:
   Enabled: false
+Metrics/ClassLength:
+  Enabled: true
+  Exclude:
+    - test/**/*

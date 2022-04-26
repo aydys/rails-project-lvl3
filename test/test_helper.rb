@@ -39,6 +39,6 @@ class ActionDispatch::IntegrationTest
   end
 
   def patch_with_referer(url, params)
-    patch url, params: params, headers: { 'Referer': 'stub'}
+    patch url, params: params, headers: { Referer: 'stub' }
   end
 end
