@@ -1,1 +1,14 @@
-h1 Moderate Page
+h1.h2.mb-4 Объявления на модерацию
+.row.mt-2
+  table.table.table-borderless
+    thead
+      tr
+        th Название
+        th Дата публикации
+        th Действия
+    tbody
+      - @bulletins.each do |bulletin|
+        tr
+          td
+            = link_to bulletin.title, bulletin_path(bulletin)
+          td = time_ago_in_words(bulletin.created_at)
