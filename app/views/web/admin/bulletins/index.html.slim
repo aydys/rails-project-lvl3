@@ -1,8 +1,11 @@
+h1.h2.mb-4 Объявления
+= render 'search'
 .row.mt-2
   table.table.table-borderless
     thead
       tr
         th Название
+        th Состояние
         th Дата публикации
         th Действия
     tbody
@@ -10,6 +13,7 @@
         tr
           td
             = link_to bulletin.title, bulletin_path(bulletin)
+          td = bulletin.state
           td = time_ago_in_words(bulletin.created_at)
           td
             = link_to 'Показать', bulletin_path(bulletin), class: 'me-2'

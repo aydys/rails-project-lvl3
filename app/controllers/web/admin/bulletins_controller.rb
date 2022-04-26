@@ -7,7 +7,8 @@ class Web::Admin::BulletinsController < Web::Admin::ApplicationController
   end
 
   def index
-    @bulletins = Bulletin.all
+    @query = Bulletin.by_recently_created.ransack(params[:q])
+    @bulletins = @query.result
     authorize([:admin, @bulletins])
   end
 end
