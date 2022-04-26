@@ -29,3 +29,5 @@ main
                         - unless bulletin.under_moderation?
                           = link_to 'На модерацию', bulletin_moderate_path(bulletin),
                             method: :patch, class: 'me-2'
+                        = link_to 'В архив', bulletin_archive_path(bulletin),
+                          method: :patch, class: 'text-danger me-2'

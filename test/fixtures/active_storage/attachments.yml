@@ -10,3 +10,15 @@ image_attachment3:
   name: image
   record: on_draft (Bulletin)
   blob: image_blob
+image_attachment4:
+  name: image
+  record: under_moderation (Bulletin)
+  blob: image_blob
+image_attachment5:
+  name: image
+  record: rejected (Bulletin)
+  blob: image_blob
+image_attachment6:
+  name: image
+  record: published (Bulletin)
+  blob: image_blob

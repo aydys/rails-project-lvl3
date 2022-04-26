@@ -18,4 +18,8 @@ class BulletinPolicy < ApplicationPolicy
   def to_moderate?
     user
   end
+
+  def archive?
+    user
+  end
 end
