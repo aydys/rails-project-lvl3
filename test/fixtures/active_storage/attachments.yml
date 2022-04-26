@@ -6,3 +6,7 @@ image_attachment2:
   name: image
   record: bulletin2 (Bulletin)
   blob: image_blob
+image_attachment3:
+  name: image
+  record: on_draft (Bulletin)
+  blob: image_blob

@@ -14,4 +14,8 @@ class BulletinPolicy < ApplicationPolicy
   def update?
     user
   end
+
+  def to_moderate?
+    user
+  end
 end

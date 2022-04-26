@@ -11,3 +11,9 @@ bulletin2:
   description: MyText_2
   author: two
   category: category2
+on_draft:
+  title: Title
+  description: Description
+  author: one
+  category: category1
+  state: "draft"

@@ -14,7 +14,7 @@ class Web::BulletinsController < Web::ApplicationController
     @bulletin = Bulletin.new bulletin_params.merge(author_id: current_user&.id)
     authorize @bulletin
     if @bulletin.save!
-      redirect_to root_path, notice: 'Bulletin was successfully created'
+      redirect_to profile_root_path, notice: 'Bulletin was successfully created'
     else
       render :new, status: :unprocessable_entity
     end
@@ -34,6 +34,16 @@ class Web::BulletinsController < Web::ApplicationController
     authorize bulletin
     if bulletin.update bulletin_params
       redirect_to profile_root_path, notice: 'Bulletin successfully updated'
+    else
+      redirect_to profile_root_path, alert: 'Failed'
+    end
+  end
+
+  def to_moderate
+    bulletin = Bulletin.find params[:id]
+    authorize bulletin
+    if bulletin.moderate!
+      redirect_to profile_root_path, notice: 'Bulletin send to moderation'
     else
       redirect_to profile_root_path, alert: 'Failed'
     end

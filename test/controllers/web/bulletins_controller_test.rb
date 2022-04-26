@@ -42,7 +42,7 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
     post bulletins_url, params: { bulletin: @attrs }
     bulletin = Bulletin.find_by title: @attrs[:title]
     assert { bulletin.description == @attrs[:description] }
-    assert_redirected_to root_url
+    assert_redirected_to profile_root_url
   end
 
   test 'should get show' do
@@ -74,6 +74,21 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
   test 'guest cannot update bulletin' do
     assert_raises(Pundit::NotAuthorizedError) do
       patch bulletin_url(@bulletin), params: { bulletin: @attrs }      
+    end
+  end
+
+  test 'should change state to under_moderation' do
+    bulletin = bulletins :on_draft
+    sign_in @user
+    patch bulletin_moderate_url(bulletin), params: { bulletin: @attrs }
+    assert_response :redirect
+    bulletin.reload
+    assert { bulletin.under_moderation? }
+  end
+  test 'guest cannot change state to under_moderation' do
+    assert_raises(Pundit::NotAuthorizedError) do
+      bulletin = bulletins :on_draft
+      patch bulletin_moderate_url(bulletin), params: { bulletin: @attrs }
     end
   end
 end

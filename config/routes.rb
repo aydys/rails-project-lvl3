@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
     resource :session, only: %i[destroy]
     resources :bulletins, except: :destroy
+    patch '/bulletins/:id/to_moderate', to: 'bulletins#to_moderate', as: 'bulletin_moderate'
 
     namespace :admin do
       root 'bulletins#moderate'

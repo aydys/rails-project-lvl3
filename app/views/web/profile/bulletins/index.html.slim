@@ -26,3 +26,6 @@ main
                       td
                         = link_to 'Показать', bulletin_path(bulletin), class: 'me-2'
                         = link_to 'Редактировать', edit_bulletin_path(bulletin), class: 'me-2'
+                        - unless bulletin.under_moderation?
+                          = link_to 'На модерацию', bulletin_moderate_path(bulletin),
+                            method: :patch, class: 'me-2'
