@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     patch '/bulletins/:id/to_moderate', to: 'bulletins#to_moderate', as: 'bulletin_moderate'
     patch '/bulletins/:id/archive', to: 'bulletins#archive', as: 'bulletin_archive'
     patch '/bulletins/:id/publish', to: 'bulletins#publish', as: 'bulletin_publish'
+    patch '/bulletins/:id/reject', to: 'bulletins#reject', as: 'bulletin_reject'
 
     namespace :admin do
       root 'bulletins#moderate'

@@ -51,6 +51,10 @@ class Web::BulletinsController < Web::ApplicationController
     set_state(:publish, 'published', 'admin')
   end
 
+  def reject
+    set_state(:reject, 'rejected', 'admin')
+  end
+
   private
 
   def set_state(event, reached_state, root_path)

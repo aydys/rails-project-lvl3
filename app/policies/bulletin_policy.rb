@@ -26,4 +26,8 @@ class BulletinPolicy < ApplicationPolicy
   def publish?
     user&.admin?
   end
+
+  def reject?
+    user&.admin?
+  end
 end
