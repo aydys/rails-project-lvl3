@@ -12,3 +12,5 @@ h1.h2.mb-4 Объявления на модерацию
           td
             = link_to bulletin.title, bulletin_path(bulletin)
           td = time_ago_in_words(bulletin.created_at)
+          td = link_to 'Опубликовать', bulletin_publish_path(bulletin), class: 'me-2',
+            method: :patch, data: { confirm: 'Are you sure?'}

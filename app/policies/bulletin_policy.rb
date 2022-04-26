@@ -22,4 +22,8 @@ class BulletinPolicy < ApplicationPolicy
   def archive?
     user
   end
+
+  def publish?
+    user&.admin?
+  end
 end

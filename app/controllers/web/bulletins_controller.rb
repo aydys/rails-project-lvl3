@@ -40,24 +40,28 @@ class Web::BulletinsController < Web::ApplicationController
   end
 
   def to_moderate
-    set_state(:moderate, 'moderated')
+    set_state(:moderate, 'moderated', 'profile')
   end
 
   def archive
-    set_state(:archive, 'archived')
+    set_state(:archive, 'archived', 'profile')
+  end
+
+  def publish
+    set_state(:publish, 'published', 'admin')
   end
 
   private
 
-  def set_state(event, reached_state)
+  def set_state(event, reached_state, root_path)
     events = Bulletin.aasm.events.map(&:name)
     bulletin = Bulletin.find params[:id]
     authorize bulletin
     if events.include?(event)
       if bulletin.send("#{event}!")
-        redirect_to profile_root_path, notice: "Bulletin successfully #{reached_state}"
+        redirect_to send("#{root_path}_root_path"), notice: "Bulletin successfully #{reached_state}"
       else
-        redirect_to profile_root_path, alert: 'Failed'
+        redirect_to send("#{root_path}_root_path"), alert: 'Failed'
       end
     end
   end

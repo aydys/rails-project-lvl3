@@ -135,4 +135,13 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
     bulletin.reload
     assert { bulletin.archived? }
   end
+
+  test 'should change state from under_moderation to published' do
+    bulletin = bulletins :under_moderation
+    sign_in users :admin
+    patch bulletin_publish_url(bulletin), params: { bulletin: @attrs }
+    assert_response :redirect
+    bulletin.reload
+    assert { bulletin.published? }
+  end
 end
