@@ -13,7 +13,7 @@ class Web::BulletinsController < Web::ApplicationController
   def create
     @bulletin = Bulletin.new bulletin_params.merge(author_id: current_user&.id)
     authorize @bulletin
-    if @bulletin.save!
+    if @bulletin.save
       redirect_to profile_root_path, notice: 'Bulletin was successfully created'
     else
       render :new, status: :unprocessable_entity
@@ -40,32 +40,32 @@ class Web::BulletinsController < Web::ApplicationController
   end
 
   def to_moderate
-    set_state(:moderate, 'moderated', 'profile')
+    set_state(:moderate, 'moderated')
   end
 
   def archive
-    set_state(:archive, 'archived', 'profile')
+    set_state(:archive, 'archived')
   end
 
   def publish
-    set_state(:publish, 'published', 'admin')
+    set_state(:publish, 'published')
   end
 
   def reject
-    set_state(:reject, 'rejected', 'admin')
+    set_state(:reject, 'rejected')
   end
 
   private
 
-  def set_state(event, reached_state, root_path)
+  def set_state(event, reached_state)
     events = Bulletin.aasm.events.map(&:name)
     bulletin = Bulletin.find params[:id]
     authorize bulletin
     if events.include?(event)
       if bulletin.send("#{event}!")
-        redirect_to send("#{root_path}_root_path"), notice: "Bulletin successfully #{reached_state}"
+        redirect_to request.referer, notice: "Bulletin successfully #{reached_state}"
       else
-        redirect_to send("#{root_path}_root_path"), alert: 'Failed'
+        redirect_to request.referer, alert: 'Failed'
       end
     end
   end

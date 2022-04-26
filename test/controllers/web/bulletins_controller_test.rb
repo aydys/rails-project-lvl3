@@ -80,7 +80,7 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
   test 'should change state to under_moderation' do
     bulletin = bulletins :on_draft
     sign_in @user
-    patch bulletin_moderate_url(bulletin), params: { bulletin: @attrs }
+    patch_with_referer bulletin_moderate_url(bulletin), { bulletin: @attrs }
     assert_response :redirect
     bulletin.reload
     assert { bulletin.under_moderation? }
@@ -96,7 +96,7 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
   test 'should change state to archive from draft' do
     bulletin = bulletins :on_draft
     sign_in @user
-    patch bulletin_archive_url(bulletin), params: { bulletin: @attrs }
+    patch_with_referer bulletin_archive_url(bulletin), { bulletin: @attrs }
     assert_response :redirect
     bulletin.reload
     assert { bulletin.archived? }
@@ -112,7 +112,7 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
   test 'should change state to archive from under_moderation' do
     bulletin = bulletins :under_moderation
     sign_in @user
-    patch bulletin_archive_url(bulletin), params: { bulletin: @attrs }
+    patch_with_referer bulletin_archive_url(bulletin), { bulletin: @attrs }
     assert_response :redirect
     bulletin.reload
     assert { bulletin.archived? }
@@ -121,7 +121,7 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
   test 'should change state to archive from rejected' do
     bulletin = bulletins :rejected
     sign_in @user
-    patch bulletin_archive_url(bulletin), params: { bulletin: @attrs }
+    patch_with_referer bulletin_archive_url(bulletin), { bulletin: @attrs }
     assert_response :redirect
     bulletin.reload
     assert { bulletin.archived? }
@@ -130,7 +130,7 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
   test 'should change state to archive from published' do
     bulletin = bulletins :published
     sign_in @user
-    patch bulletin_archive_url(bulletin), params: { bulletin: @attrs }
+    patch_with_referer bulletin_archive_url(bulletin), { bulletin: @attrs }
     assert_response :redirect
     bulletin.reload
     assert { bulletin.archived? }
@@ -139,7 +139,7 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
   test 'should change state from under_moderation to published' do
     bulletin = bulletins :under_moderation
     sign_in users :admin
-    patch bulletin_publish_url(bulletin), params: { bulletin: @attrs }
+    patch_with_referer bulletin_publish_url(bulletin), { bulletin: @attrs }
     assert_response :redirect
     bulletin.reload
     assert { bulletin.published? }
@@ -148,7 +148,7 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
   test 'should change state from under_moderation to reject' do
     bulletin = bulletins :under_moderation
     sign_in users :admin
-    patch bulletin_reject_url(bulletin), params: { bulletin: @attrs }
+    patch_with_referer bulletin_reject_url(bulletin), { bulletin: @attrs }
     assert_response :redirect
     bulletin.reload
     assert { bulletin.rejected? }
