@@ -2,7 +2,8 @@ class Web::BulletinsController < Web::ApplicationController
   after_action :verify_authorized, except: %i[index show]
 
   def index
-    @bulletins = Bulletin.published.by_recently_created
+    @query = Bulletin.published.by_recently_created.ransack params[:q]
+    @bulletins = @query.result.includes(:category)
   end
 
   def new
