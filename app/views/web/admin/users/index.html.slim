@@ -3,17 +3,18 @@ h1.h2.mb-4 = t('activerecord.models.user.other')
   table.table.table-borderless
     thead
       tr
-        th Имя
+        th = t('.name')
         th Email
-        th Admin
-        th Действия
+        th = t('.admin')
+        th = t('.actions')
     tbody
       - @users.each do |user|
         tr
           td = user.name
           td = user.email
-          td = user.admin? ? 'Да' : 'Нет'
+          td = user.admin? ? t('.yes') : t('.no')
           td
-            = link_to 'Destroy', admin_user_path(user),
-              method: :delete, class: 'text-danger'
+            = link_to t('.destroy'), admin_user_path(user),
+              method: :delete, data: { confirm: t('.confirm') },
+              class: 'text-danger'
   = paginate @users, theme: 'bootstrap-5'

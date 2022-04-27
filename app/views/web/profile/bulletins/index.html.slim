@@ -5,7 +5,7 @@ main
         .row
           .p-3.p-lg-5.pt-lg-0
             .mb-4
-              h2 Мои объявления
+              h2 = t('.header')
               hr
             = link_to 'Добавить объявление', new_bulletin_path
             = render 'search'
@@ -13,10 +13,10 @@ main
               table.table.table-borderless
                 thead
                   tr
-                    th Название
-                    th Состояние
-                    th Дата публикации
-                    th Actions
+                    th = t('.title')
+                    th = t('.state')
+                    th = t('.date')
+                    th = t('.actions')
                 tbody
                   - @bulletins.each do |bulletin|
                     tr
@@ -25,12 +25,12 @@ main
                       td = bulletin.state
                       td = time_ago_in_words(bulletin.created_at)
                       td
-                        = link_to 'Показать', bulletin_path(bulletin), class: 'me-2'
-                        = link_to 'Редактировать', edit_bulletin_path(bulletin), class: 'me-2'
+                        = link_to t('.show'), bulletin_path(bulletin), class: 'me-2'
+                        = link_to t('.edit'), edit_bulletin_path(bulletin), class: 'me-2'
                         - unless bulletin.archived?
                           - unless bulletin.under_moderation? || bulletin.published?
-                            = link_to 'На модерацию', bulletin_moderate_path(bulletin),
+                            = link_to t('.moderate'), bulletin_moderate_path(bulletin),
                               method: :patch, class: 'me-2'
-                          = link_to 'В архив', bulletin_archive_path(bulletin),
-                            method: :patch, class: 'text-danger me-2', data: { confirm: 'Are you sure?' }
+                          = link_to t('.archive'), bulletin_archive_path(bulletin),
+                            method: :patch, class: 'text-danger me-2', data: { confirm: t('.confirm_archive') }
               = paginate @bulletins, theme: 'bootstrap-5'

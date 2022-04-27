@@ -4,6 +4,10 @@ en:
       create:
         success: Bulletin added
         error: Failed to save changes. Please check form fields and try again
+      new:
+        header: New bulletin
+      edit:
+        header: Edit bulletin
       update:
         success: Bulletin updated
         error: Failed to save changes. Please check form fields and try again
@@ -25,10 +29,38 @@ en:
           category: Select category
           search: Search
           reset: Reset
+        index:
+          title: Title
+          state: State
+          date: Date
+          actions: Actions
+          show: Show
+          archive: Archive
+        moderate:
+          header: Bulletin under moderation
+          title: Title
+          date: Date
+          actions: Actions
+          publish: Publish
+          reject: Reject
+          archive: Archive
+          confirm_publish: Confirm publish
+          confirm_rejection: Confirm rejection
+          confirm_archive: Confirm archive
       categories:
+        index:
+          title: Title
+          actions: Actions
+          edit: Edit
+          destroy: Destroy
+          add: Add category
+        new:
+          header: New category
         create:
           success: Category created
           error: Failed to save changes. Please check form fields and try again
+        edit:
+          header: Edit category
         update:
           success: Category updated
           error: Failed to save changes. Please check form fields and try again
@@ -36,6 +68,14 @@ en:
           success: Category removed
           error: Failed to remove category
       users:
+        index:
+          name: Name
+          admin: Admin
+          actions: Actions
+          "yes": Yes
+          "no": No
+          destroy: destroy
+          confirm: Confirm remove user
         destroy:
           success: User deleted
           error: Failed to delete user
@@ -46,3 +86,14 @@ en:
           by_state: Select state
           search: Search
           reset: Reset
+        index:
+          header: My bulletins
+          title: Title
+          state: State
+          date: Date
+          actions: Actions
+          show: Show
+          edit: Edit
+          moderate: Send to moderate
+          archive: Archive
+          confirm_archive: Confirm archive

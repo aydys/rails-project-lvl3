@@ -1,11 +1,11 @@
-h1.h2.mb-4 Объявления на модерацию
+h1.h2.mb-4 = t('.header')
 .row.mt-2
   table.table.table-borderless
     thead
       tr
-        th Название
-        th Дата публикации
-        th Действия
+        th = t('.title')
+        th = t('.date')
+        th = t('.actions')
     tbody
       - @bulletins.each do |bulletin|
         tr
@@ -13,10 +13,10 @@ h1.h2.mb-4 Объявления на модерацию
             = link_to bulletin.title, bulletin_path(bulletin)
           td = time_ago_in_words(bulletin.created_at)
           td
-            = link_to 'Опубликовать', bulletin_publish_path(bulletin), class: 'me-2',
-              method: :patch, data: { confirm: 'Are you sure?' }
-            = link_to 'Вернуть', bulletin_reject_path(bulletin), class: 'me-2',
-              method: :patch, data: { confirm: 'Are you sure?' }
-            = link_to 'В архив', bulletin_archive_path(bulletin), class: 'me-2 text-danger',
-              method: :patch, data: { confirm: 'Are you sure?' }
+            = link_to t('.publish'), bulletin_publish_path(bulletin), class: 'me-2',
+              method: :patch, data: { confirm: t('.confirm_publish') }
+            = link_to t('.reject'), bulletin_reject_path(bulletin), class: 'me-2',
+              method: :patch, data: { confirm: t('.confirm_rejection') }
+            = link_to t('.archive'), bulletin_archive_path(bulletin), class: 'me-2 text-danger',
+              method: :patch, data: { confirm: t('.confirm_archive') }
   = paginate @bulletins, theme: 'bootstrap-5'

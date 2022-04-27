@@ -1,20 +1,20 @@
 h1.h2.mb-4 = t('activerecord.models.category.other')
-= link_to 'Добавить категорию', new_admin_category_path
+= link_to t('.add'), new_admin_category_path
 .row.mt-2
   table.table.table-borderless
     thead
       tr
         th Id
-        th Название
-        th Действия
+        th = t('.title')
+        th = t('.actions')
     tbody
       - @categories.each_with_index do |category, index|
         tr
-          td = index + 1
+          td = category.id
           td = category.name
           td
-            = link_to 'Редактировать', edit_admin_category_path(category),
+            = link_to t('.edit'), edit_admin_category_path(category),
               class: 'me-1'
-            = link_to 'Удалить', admin_category_path(category),
+            = link_to t('.destroy'), admin_category_path(category),
               method: :delete, confirmation: true, class: 'text-danger me-1'
   = paginate @categories, theme: 'bootstrap-5'
