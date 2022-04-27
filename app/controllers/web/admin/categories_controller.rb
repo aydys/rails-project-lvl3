@@ -14,9 +14,10 @@ class Web::Admin::CategoriesController < Web::Admin::ApplicationController
     @category = Category.new(category_params)
     authorize [:admin, @category]
     if @category.save
-      redirect_to admin_categories_path, notice: 'Category successfully created'
+      redirect_to admin_categories_path, notice: t('.success')
     else
-      render :new
+      flash.now[:alert] = t('.error')
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -30,9 +31,10 @@ class Web::Admin::CategoriesController < Web::Admin::ApplicationController
     authorize [:admin, @category]
 
     if @category.update category_params
-      redirect_to admin_categories_path, notice: 'Category successfully updated'
+      redirect_to admin_categories_path, notice: t('.success')
     else
-      render :edit
+      flash.now[:alert] = t('.error')
+      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -41,9 +43,9 @@ class Web::Admin::CategoriesController < Web::Admin::ApplicationController
     authorize [:admin, category]
 
     if category.destroy
-      redirect_to admin_categories_path, notice: 'Category successfully deleted'
+      redirect_to admin_categories_path, notice: t('.success')
     else
-      flash.now[:error] = 'Произошла ошибка'
+      flash.now[:error] = t('.error')
       render :index
     end
   end

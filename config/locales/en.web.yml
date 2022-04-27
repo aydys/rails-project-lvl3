@@ -13,3 +13,18 @@ en:
         published: Bulletin published
         rejected: Bulletin rejected
         failed: Failed to change state of bulletin
+    admin:
+      categories:
+        create:
+          success: Category created
+          error: Failed to save changes. Please check form fields and try again
+        update:
+          success: Category updated
+          error: Failed to save changes. Please check form fields and try again
+        destroy:
+          success: Category removed
+          error: Failed to remove category
+      users:
+        destroy:
+          success: User deleted
+          error: Failed to delete user

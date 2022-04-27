@@ -11,9 +11,9 @@ class Web::Admin::UsersController < Web::Admin::ApplicationController
     authorize [:admin, user]
 
     if user.destroy
-      redirect_to admin_users_path, notice: 'User successfully deleted'
+      redirect_to admin_users_path, notice: t('.success')
     else
-      flash.now[:error] = 'Произошла ошибка'
+      flash.now[:error] = t('.error')
       render :index
     end
   end
