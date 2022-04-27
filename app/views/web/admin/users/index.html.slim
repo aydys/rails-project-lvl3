@@ -16,3 +16,4 @@ h1.h2.mb-4 Пользователи
           td
             = link_to 'Destroy', admin_user_path(user),
               method: :delete, class: 'text-danger'
+  = paginate @users, theme: 'bootstrap-5'

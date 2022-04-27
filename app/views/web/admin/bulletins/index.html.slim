@@ -20,3 +20,4 @@ h1.h2.mb-4 Объявления
             - unless bulletin.archived?
               = link_to 'В архив', bulletin_archive_path(bulletin), class: 'me-2 text-danger',
                 method: :patch, data: { confirm: 'Are you sure?' }
+  = paginate @bulletins, theme: 'bootstrap-5'

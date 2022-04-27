@@ -17,3 +17,4 @@ h1.h2.mb-4 Категории
               class: 'me-1'
             = link_to 'Удалить', admin_category_path(category),
               method: :delete, confirmation: true, class: 'text-danger me-1'
+  = paginate @categories, theme: 'bootstrap-5'

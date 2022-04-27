@@ -2,7 +2,7 @@ class Web::Admin::UsersController < Web::Admin::ApplicationController
   after_action :verify_authorized
 
   def index
-    @users = User.all
+    @users = User.all.page(params[:page]).per(10)
     authorize [:admin, @users]
   end
 

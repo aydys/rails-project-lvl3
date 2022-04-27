@@ -33,3 +33,4 @@ main
                               method: :patch, class: 'me-2'
                           = link_to 'В архив', bulletin_archive_path(bulletin),
                             method: :patch, class: 'text-danger me-2', data: { confirm: 'Are you sure?' }
+              = paginate @bulletins, theme: 'bootstrap-5'
