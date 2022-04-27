@@ -1,0 +1,20 @@
+ru:
+  activerecord:
+    models:
+      bulletin:
+        one: Объявление
+        other: Объявления
+      category:
+        one: Категория
+        other: Категории
+      user:
+        one: Пользователь
+        other: Пользователи
+    attributes:
+      bulletin:
+        title: Название
+        description: Описание
+        image: Картинка
+        category: Категория
+      category:
+        name: Название
