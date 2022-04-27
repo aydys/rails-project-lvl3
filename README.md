@@ -1,4 +1,4 @@
-### Hexlet tests and linter status:
+# Доска объявлений
 
 [![Actions Status](https://github.com/aydys/rails-project-lvl3/workflows/hexlet-check/badge.svg)](https://github.com/aydys/rails-project-lvl3/actions)
 
