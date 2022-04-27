@@ -1,0 +1,15 @@
+en:
+  web:
+    bulletins:
+      create:
+        success: Bulletin added
+        error: Failed to save changes. Please check form fields and try again
+      update:
+        success: Bulletin updated
+        error: Failed to save changes. Please check form fields and try again
+      flash_states:
+        moderated: Bulletin sends to moderate
+        archived: Bulletin sent to archive
+        published: Bulletin published
+        rejected: Bulletin rejected
+        failed: Failed to change state of bulletin

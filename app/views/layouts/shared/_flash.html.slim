@@ -1,5 +1,8 @@
 - flash.any?
-  - flash.each do |_, msg|
-    .container.alert.alert-info.alert-dismissible.fade.show role='alert'
+  - flash.each do |type, msg|
+    .container.alert.alert-dismissible.fade.show[
+      role='alert'
+      class="alert-#{type == 'notice' ? 'success' : 'warning'}"
+    ]
       == msg
       button.btn-close type='button' data-bs-dismiss='alert' aria-hidden='true'

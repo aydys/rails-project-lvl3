@@ -18,8 +18,9 @@ class Web::BulletinsController < Web::ApplicationController
     @bulletin = Bulletin.new bulletin_params.merge(author_id: current_user&.id)
     authorize @bulletin
     if @bulletin.save
-      redirect_to profile_root_path, notice: 'Bulletin was successfully created'
+      redirect_to profile_root_path, notice: t('.success')
     else
+      flash.now[:alert] = t('.error')
       render :new, status: :unprocessable_entity
     end
   end
@@ -37,9 +38,10 @@ class Web::BulletinsController < Web::ApplicationController
     bulletin = Bulletin.find params[:id]
     authorize bulletin
     if bulletin.update bulletin_params
-      redirect_to profile_root_path, notice: 'Bulletin successfully updated'
+      redirect_to profile_root_path, notice: t('.update')
     else
-      redirect_to profile_root_path, alert: 'Failed'
+      flash.now[:alert] = t('.error')
+      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -68,9 +70,9 @@ class Web::BulletinsController < Web::ApplicationController
     return unless events.include? event
 
     if bulletin.send("#{event}!")
-      redirect_to request.referer, notice: "Bulletin successfully #{reached_state}"
+      redirect_to request.referer, notice: t("web.bulletins.flash_states.#{reached_state}")
     else
-      redirect_to request.referer, alert: 'Failed'
+      redirect_to request.referer, alert: t('web.bulletins.flash_states.failed')
     end
   end
 
