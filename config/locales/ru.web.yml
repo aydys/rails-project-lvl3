@@ -13,7 +13,18 @@ ru:
         published: Объявление опубликовано
         rejected: Объявление отклонено
         failed: Не удалось изменить состояние объявления
+      search:
+        by_title: Искать по названию объявления
+        category: Выбрать категорию
+        search: Искать
+        reset: Сброс
     admin:
+      bulletins:
+        search:
+          by_title: Искать по названию объявления
+          category: Выбрать категорию
+          search: Искать
+          reset: Сброс
       categories:
         create:
           success: Категория создана
@@ -28,3 +39,10 @@ ru:
         destroy:
           success: Пользователь удален
           error: Не удалось удалить пользователя
+    profile:
+      bulletins:
+        search:
+          by_title: Искать по названию объявления
+          by_state: Выбрать состояние
+          search: Искать
+          reset: Сброс

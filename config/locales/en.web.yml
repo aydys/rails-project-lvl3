@@ -13,7 +13,18 @@ en:
         published: Bulletin published
         rejected: Bulletin rejected
         failed: Failed to change state of bulletin
+      search:
+        by_title: Search by bulletin title
+        category: Select category
+        search: Search
+        reset: Reset
     admin:
+      bulletins:
+        search:
+          by_title: Search by bulletin title
+          category: Select category
+          search: Search
+          reset: Reset
       categories:
         create:
           success: Category created
@@ -28,3 +39,10 @@ en:
         destroy:
           success: User deleted
           error: Failed to delete user
+    profile:
+      bulletins:
+        search:
+          by_title: Search by bulletin title
+          by_state: Select state
+          search: Search
+          reset: Reset

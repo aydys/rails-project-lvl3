@@ -4,12 +4,12 @@
       .col-6
         .form-group.mb-3
           = f.search_field :title_cont, class: 'form-control'
-          small.form-text.text-muted Искать по названию объявления
+          small.form-text.text-muted = t('.by_title')
       .col-4
         .form-group.mb-3
           = f.input :state_eq, as: :select, collection: Bulletin.aasm.states.map(&:name), label: false,
             include_blank: true, class: 'form-control'
-          small.form-text.text-muted По состоянию
+          small.form-text.text-muted = t('.by_state')
       .col-2
-        = f.button :submit, 'Искать', class: 'btn btn-primary me-2'
-        = link_to 'Сброс', profile_root_path, class: 'btn btn-outline-primary'
+        = f.button :submit, t('.search'), class: 'btn btn-primary me-2'
+        = link_to t('.reset'), profile_root_path, class: 'btn btn-outline-primary'
