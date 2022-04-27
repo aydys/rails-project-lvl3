@@ -5,6 +5,7 @@ AllCops:
   Exclude:
     - "db/**/*"
     - "bin/**/*"
+    - "vendor/**/*"
 Style/Documentation:
   Enabled: false
 Metrics/BlockLength:
