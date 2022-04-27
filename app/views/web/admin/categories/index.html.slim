@@ -8,7 +8,7 @@ h1.h2.mb-4 = t('activerecord.models.category.other')
         th = t('.title')
         th = t('.actions')
     tbody
-      - @categories.each_with_index do |category, index|
+      - @categories.each do |category|
         tr
           td = category.id
           td = category.name

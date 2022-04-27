@@ -27,3 +27,6 @@ Metrics/ClassLength:
   Enabled: true
   Exclude:
     - test/**/*
+Metrics/AbcSize:
+  IgnoredMethods:
+    - "call"

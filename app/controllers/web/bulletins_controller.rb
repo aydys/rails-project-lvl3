@@ -64,11 +64,8 @@ class Web::BulletinsController < Web::ApplicationController
   private
 
   def set_state(event, reached_state)
-    events = Bulletin.aasm.events.map(&:name)
     bulletin = Bulletin.find params[:id]
     authorize bulletin
-    return unless events.include? event
-
     if bulletin.send("#{event}!")
       redirect_to request.referer, notice: t("web.bulletins.flash_states.#{reached_state}")
     else
