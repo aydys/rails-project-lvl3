@@ -1,33 +1,43 @@
-require: rubocop-rails
-
+---
 AllCops:
+  TargetRubyVersion: 3.0.1
   NewCops: enable
   Exclude:
-    - "db/**/*"
-    - "bin/**/*"
+    - "bin/**"
+    - "db/schema.rb"
+    - "db/migrate/**"
     - "vendor/**/*"
-Style/Documentation:
-  Enabled: false
-Metrics/BlockLength:
-  Enabled: false
-Layout/LineLength:
-  Enabled: false
+    - "node_modules/**/*"
+    - "vendor/**/*"
+    - "node_modules/**/*"
+  SuggestExtensions: false
+
+require:
+  - rubocop-rails
+
+Rails:
+  Enabled: true
+
 Style/ClassAndModuleChildren:
   Enabled: false
-Rails/NotNullColumn:
+
+Style/IfUnlessModifier:
   Enabled: false
-Style/RedundantFetchBlock:
+
+Layout/LineLength:
   Enabled: false
-Rails/FilePath:
-  Enabled: false
-Style/GlobalStdStream:
-  Enabled: false
-Style/FrozenStringLiteralComment:
-  Enabled: false
-Metrics/ClassLength:
-  Enabled: true
-  Exclude:
-    - test/**/*
+
 Metrics/AbcSize:
-  IgnoredMethods:
-    - "call"
+  Enabled: false
+
+Metrics/MethodLength:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Metrics/BlockLength:
+  Enabled: false
+
+Style/AsciiComments:
+  Enabled: false

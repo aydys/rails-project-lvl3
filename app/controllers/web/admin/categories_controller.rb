@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Web::Admin::CategoriesController < Web::Admin::ApplicationController
   after_action :verify_authorized
   def index

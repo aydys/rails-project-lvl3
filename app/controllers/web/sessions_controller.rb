@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Web::SessionsController < Web::ApplicationController
   def destroy
     sign_out

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Web::BulletinsController < Web::ApplicationController
   after_action :verify_authorized, except: %i[index show]
 

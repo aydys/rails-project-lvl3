@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Web::Admin::BulletinsController < Web::Admin::ApplicationController
   after_action :verify_authorized
 

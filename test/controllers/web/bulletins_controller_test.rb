@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
@@ -77,26 +79,8 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
-  test 'should change state to under_moderation' do
-    test_state(:on_draft, 'moderate', 'under_moderation')
-  end
-
-  test 'guest cannot change state to under_moderation' do
-    assert_raises(Pundit::NotAuthorizedError) do
-      bulletin = bulletins :on_draft
-      patch moderate_bulletin_url(bulletin), params: { bulletin: @attrs }
-    end
-  end
-
   test 'should change state to archive from draft' do
     test_state(:on_draft, 'archive', 'archived')
-  end
-
-  test 'guest cannot change state to archived' do
-    assert_raises(Pundit::NotAuthorizedError) do
-      bulletin = bulletins :on_draft
-      patch archive_bulletin_url(bulletin), params: { bulletin: @attrs }
-    end
   end
 
   test 'should change state to archive from under_moderation' do
