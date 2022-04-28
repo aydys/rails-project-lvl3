@@ -15,7 +15,7 @@ h1.h2.mb-4 = t('.header')
           td
             = link_to t('.publish'), publish_admin_bulletin_path(bulletin), class: 'me-2',
               method: :patch, data: { confirm: t('.confirm_publish') }
-            = link_to t('.reject'), bulletin_reject_path(bulletin), class: 'me-2',
+            = link_to t('.reject'), reject_admin_bulletin_path(bulletin), class: 'me-2',
               method: :patch, data: { confirm: t('.confirm_rejection') }
             = link_to t('.archive'), archive_bulletin_path(bulletin), class: 'me-2 text-danger',
               method: :patch, data: { confirm: t('.confirm_archive') }

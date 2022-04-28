@@ -115,9 +115,9 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
     test_state_admin(:under_moderation, 'publish', 'published')
   end
 
-  # test 'should change state from under_moderation to reject' do
-  #   test_state_admin(:under_moderation, 'reject', 'rejected')
-  # end
+  test 'should change state from under_moderation to reject' do
+    test_state_admin(:under_moderation, 'reject', 'rejected')
+  end
 
   private
 
