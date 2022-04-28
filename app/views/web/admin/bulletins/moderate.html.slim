@@ -17,6 +17,6 @@ h1.h2.mb-4 = t('.header')
               method: :patch, data: { confirm: t('.confirm_publish') }
             = link_to t('.reject'), bulletin_reject_path(bulletin), class: 'me-2',
               method: :patch, data: { confirm: t('.confirm_rejection') }
-            = link_to t('.archive'), bulletin_archive_path(bulletin), class: 'me-2 text-danger',
+            = link_to t('.archive'), archive_bulletin_path(bulletin), class: 'me-2 text-danger',
               method: :patch, data: { confirm: t('.confirm_archive') }
   = paginate @bulletins, theme: 'bootstrap-5'

@@ -6,8 +6,8 @@ Rails.application.routes.draw do
 
     resource :session, only: %i[destroy]
     resources :bulletins, except: :destroy
-    patch '/bulletins/:id/to_moderate', to: 'bulletins#to_moderate', as: 'bulletin_moderate'
-    patch '/bulletins/:id/archive', to: 'bulletins#archive', as: 'bulletin_archive'
+    patch '/bulletins/:id/to_moderate', to: 'bulletins#to_moderate', as: 'moderate_bulletin'
+    patch '/bulletins/:id/archive', to: 'bulletins#archive', as: 'archive_bulletin'
     patch '/bulletins/:id/publish', to: 'bulletins#publish', as: 'bulletin_publish'
     patch '/bulletins/:id/reject', to: 'bulletins#reject', as: 'bulletin_reject'
 
