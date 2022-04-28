@@ -36,6 +36,7 @@ ru:
           actions: Действия
           show: Показать
           archive: В архив
+          confirm_archive: Потвердить архивацию
         moderate:
           header: Объявления на модерацию
           title: Название

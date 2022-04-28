@@ -18,6 +18,6 @@ h1.h2.mb-4 = t('activerecord.models.bulletin.other')
           td
             = link_to t('.show'), bulletin_path(bulletin), class: 'me-2'
             - unless bulletin.archived?
-              = link_to t('.archive'), archive_bulletin_path(bulletin), class: 'me-2 text-danger',
+              = link_to t('.archive'), archive_bulletin_path(bulletin, redirect_path: admin_bulletins_path), class: 'me-2 text-danger',
                 method: :patch, data: { confirm: t('.confirm_archive') }
   = paginate @bulletins, theme: 'bootstrap-5'

@@ -46,30 +46,30 @@ class Web::BulletinsController < Web::ApplicationController
   end
 
   def to_moderate
-    set_state(:moderate, 'moderated')
+    set_state(:moderate, 'moderated', profile_path)
   end
 
   def archive
-    set_state(:archive, 'archived')
+    set_state(:archive, 'archived', params[:redirect_path])
   end
 
   def publish
-    set_state(:publish, 'published')
+    set_state(:publish, 'published', admin_root_path)
   end
 
   def reject
-    set_state(:reject, 'rejected')
+    set_state(:reject, 'rejected', admin_root_path)
   end
 
   private
 
-  def set_state(event, reached_state)
+  def set_state(event, reached_state, redirect_path)
     bulletin = Bulletin.find params[:id]
     authorize bulletin
     if bulletin.send("#{event}!")
-      redirect_to request.referer, notice: t("web.bulletins.flash_states.#{reached_state}")
+      redirect_to redirect_path, notice: t("web.bulletins.flash_states.#{reached_state}")
     else
-      redirect_to request.referer, alert: t('web.bulletins.flash_states.failed')
+      redirect_to redirect_path, alert: t('web.bulletins.flash_states.failed')
     end
   end
 

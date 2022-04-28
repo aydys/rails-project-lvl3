@@ -124,7 +124,8 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
   def test_state(prev_state_bulletin, event, next_state)
     bulletin = bulletins prev_state_bulletin
     sign_in users :admin
-    patch_with_referer send("#{event}_bulletin_url", bulletin), { bulletin: @attrs }
+    patch_with_referer send("#{event}_bulletin_url", bulletin),
+                       { bulletin: @attrs, redirect_path: profile_url }
     bulletin.reload
     assert { bulletin.send("#{next_state}?") }
   end
@@ -132,7 +133,8 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
   def test_state_admin(prev_state_bulletin, event, next_state)
     bulletin = bulletins prev_state_bulletin
     sign_in users :admin
-    patch_with_referer send("#{event}_admin_bulletin_url", bulletin), { bulletin: @attrs }
+    patch_with_referer send("#{event}_admin_bulletin_url", bulletin),
+                       { bulletin: @attrs, redirect_path: admin_root_url }
     bulletin.reload
     assert { bulletin.send("#{next_state}?") }
   end

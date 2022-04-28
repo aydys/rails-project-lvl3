@@ -31,6 +31,6 @@ main
                           - unless bulletin.under_moderation? || bulletin.published?
                             = link_to t('.moderate'), moderate_bulletin_path(bulletin),
                               method: :patch, class: 'me-2'
-                          = link_to t('.archive'), archive_bulletin_path(bulletin),
+                          = link_to t('.archive'), archive_bulletin_path(bulletin, redirect_path: profile_path),
                             method: :patch, class: 'text-danger me-2', data: { confirm: t('.confirm_archive') }
               = paginate @bulletins, theme: 'bootstrap-5'

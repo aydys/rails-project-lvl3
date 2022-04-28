@@ -36,6 +36,7 @@ en:
           actions: Actions
           show: Show
           archive: Archive
+          confirm_archive: Confirm archive
         moderate:
           header: Bulletin under moderation
           title: Title
