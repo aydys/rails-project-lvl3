@@ -50,7 +50,7 @@ class Web::BulletinsController < Web::ApplicationController
   end
 
   def archive
-    set_state(:archive, 'archived', params[:redirect_path])
+    set_state(:archive, 'archived', profile_path)
   end
 
   def publish
