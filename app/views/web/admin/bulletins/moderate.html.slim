@@ -13,7 +13,7 @@ h1.h2.mb-4 = t('.header')
             = link_to bulletin.title, bulletin_path(bulletin)
           td = time_ago_in_words(bulletin.created_at)
           td
-            = link_to t('.publish'), bulletin_publish_path(bulletin), class: 'me-2',
+            = link_to t('.publish'), publish_admin_bulletin_path(bulletin), class: 'me-2',
               method: :patch, data: { confirm: t('.confirm_publish') }
             = link_to t('.reject'), bulletin_reject_path(bulletin), class: 'me-2',
               method: :patch, data: { confirm: t('.confirm_rejection') }
