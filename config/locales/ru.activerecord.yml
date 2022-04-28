@@ -16,5 +16,10 @@ ru:
         description: Описание
         image: Картинка
         category: Категория
+        state/draft: Черновик
+        state/under_moderation: На модерации
+        state/published: Опубликовано
+        state/rejected: Возвращено
+        state/archived: В архиве
       category:
         name: Название
