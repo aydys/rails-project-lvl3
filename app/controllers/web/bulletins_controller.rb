@@ -18,7 +18,7 @@ class Web::BulletinsController < Web::ApplicationController
     @bulletin = Bulletin.new bulletin_params.merge(user_id: current_user&.id)
     authorize @bulletin
     if @bulletin.save
-      redirect_to profile_root_path, notice: t('.success')
+      redirect_to profile_path, notice: t('.success')
     else
       flash.now[:alert] = t('.error')
       render :new, status: :unprocessable_entity
@@ -38,7 +38,7 @@ class Web::BulletinsController < Web::ApplicationController
     bulletin = Bulletin.find params[:id]
     authorize bulletin
     if bulletin.update bulletin_params
-      redirect_to profile_root_path, notice: t('.update')
+      redirect_to profile_path, notice: t('.update')
     else
       flash.now[:alert] = t('.error')
       render :edit, status: :unprocessable_entity

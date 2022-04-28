@@ -42,7 +42,7 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
     post bulletins_url, params: { bulletin: @attrs }
     bulletin = Bulletin.find_by title: @attrs[:title]
     assert { bulletin.description == @attrs[:description] }
-    assert_redirected_to profile_root_url
+    assert_redirected_to profile_url
   end
 
   test 'should get show' do
@@ -68,7 +68,7 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
     patch bulletin_url(@bulletin), params: { bulletin: @attrs }
     bulletin = Bulletin.find @bulletin.id
     assert { bulletin.title == @attrs[:title] }
-    assert_redirected_to profile_root_url
+    assert_redirected_to profile_url
   end
 
   test 'guest cannot update bulletin' do

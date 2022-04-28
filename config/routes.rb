@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     end
 
     namespace :profile do
-      root 'bulletins#index'
+      get '/', to: 'bulletins#index'
     end
   end
 end
