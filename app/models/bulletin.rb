@@ -1,7 +1,7 @@
 class Bulletin < ApplicationRecord
   include AASM
 
-  belongs_to :author, class_name: 'User'
+  belongs_to :user
   belongs_to :category
 
   has_one_attached :image

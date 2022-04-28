@@ -9,7 +9,7 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
       description: Faker::Food.description,
       category_id: categories(:category1).id,
       image: fixture_file_upload('hexlet.jpg', 'image/jpg'),
-      author_id: @user
+      user: @user
     }
   end
 

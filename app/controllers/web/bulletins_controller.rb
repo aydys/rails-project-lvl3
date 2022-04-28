@@ -15,7 +15,7 @@ class Web::BulletinsController < Web::ApplicationController
   end
 
   def create
-    @bulletin = Bulletin.new bulletin_params.merge(author_id: current_user&.id)
+    @bulletin = Bulletin.new bulletin_params.merge(user_id: current_user&.id)
     authorize @bulletin
     if @bulletin.save
       redirect_to profile_root_path, notice: t('.success')
