@@ -19,10 +19,11 @@ class Web::Admin::BulletinsController < Web::Admin::ApplicationController
   def archive
     bulletin = Bulletin.find params[:id]
     authorize bulletin
+    redirect_path = params[:moderation] ? admin_root_path : admin_bulletins_path
     if bulletin.archive!
-      redirect_to request.referer, notice: t('web.bulletins.flash_states.archived')
+      redirect_to redirect_path, notice: t('web.bulletins.flash_states.archived')
     else
-      redirect_to request.referer, alert: t('web.bulletins.flash_states.failed')
+      redirect_to redirect_path, alert: t('web.bulletins.flash_states.failed')
     end
   end
 end
