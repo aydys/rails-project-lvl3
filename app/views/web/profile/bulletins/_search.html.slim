@@ -8,7 +8,7 @@
       .col-4
         .form-group.mb-3
           = f.input :state_eq, as: :select,
-            collection: Bulletin.aasm.states.map(&:display_name), label: false,
+            collection: @states_collection, label: false,
             include_blank: true, class: 'form-control'
           small.form-text.text-muted = t('.by_state')
       .col-2
