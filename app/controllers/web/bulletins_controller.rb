@@ -2,6 +2,7 @@
 
 class Web::BulletinsController < Web::ApplicationController
   after_action :verify_authorized, except: %i[index show]
+  before_action :find_bulletin, only: %i[show edit update]
 
   def index
     @query = Bulletin.published
@@ -27,19 +28,15 @@ class Web::BulletinsController < Web::ApplicationController
     end
   end
 
-  def show
-    @bulletin = Bulletin.find params[:id]
-  end
+  def show; end
 
   def edit
-    @bulletin = Bulletin.find params[:id]
     authorize @bulletin
   end
 
   def update
-    bulletin = Bulletin.find params[:id]
-    authorize bulletin
-    if bulletin.update bulletin_params
+    authorize @bulletin
+    if @bulletin.update bulletin_params
       redirect_to profile_path, notice: t('.update')
     else
       flash.now[:alert] = t('.error')
@@ -65,10 +62,14 @@ class Web::BulletinsController < Web::ApplicationController
 
   private
 
+  def find_bulletin
+    @bulletin = Bulletin.find params[:id]
+  end
+
   def set_state(event, reached_state, redirect_path)
-    bulletin = Bulletin.find params[:id]
-    authorize bulletin
-    if bulletin.send("#{event}!")
+    find_bulletin
+    authorize @bulletin
+    if @bulletin.send("#{event}!")
       redirect_to redirect_path, notice: t("web.bulletins.flash_states.#{reached_state}")
     else
       redirect_to redirect_path, alert: t('web.bulletins.flash_states.failed')
