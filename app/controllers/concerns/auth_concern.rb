@@ -6,8 +6,7 @@ module AuthConcern
   end
 
   def sign_out
-    session.delete(:user_id)
-    session.clear
+    reset_sessions
   end
 
   def current_user
@@ -15,6 +14,6 @@ module AuthConcern
   end
 
   def signed_in?
-    !current_user.nil?
+    current_user.present?
   end
 end

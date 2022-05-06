@@ -31,3 +31,4 @@
 
 en:
   success: Successfully
+  failed: Failed to execute command
