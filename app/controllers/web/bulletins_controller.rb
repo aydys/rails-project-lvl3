@@ -68,6 +68,8 @@ class Web::BulletinsController < Web::ApplicationController
 
   def set_state(event, reached_state, redirect_path)
     find_bulletin
+    return unless @bulletin.send("may_#{event}?")
+
     authorize @bulletin
     if @bulletin.send("#{event}!")
       redirect_to redirect_path, notice: t("web.bulletins.flash_states.#{reached_state}")
