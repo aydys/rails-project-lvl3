@@ -4,17 +4,14 @@ class Web::Admin::CategoriesController < Web::Admin::ApplicationController
   after_action :verify_authorized
   def index
     @categories = Category.all.page(params[:page]).per(10)
-    authorize [:admin, @categories]
   end
 
   def new
     @category = Category.new
-    authorize [:admin, @category]
   end
 
   def create
     @category = Category.new(category_params)
-    authorize [:admin, @category]
     if @category.save
       redirect_to admin_categories_path, notice: t('.success')
     else
@@ -25,12 +22,10 @@ class Web::Admin::CategoriesController < Web::Admin::ApplicationController
 
   def edit
     @category = Category.find params[:id]
-    authorize [:admin, @category]
   end
 
   def update
     @category = Category.find params[:id]
-    authorize [:admin, @category]
 
     if @category.update category_params
       redirect_to admin_categories_path, notice: t('.success')
@@ -42,7 +37,6 @@ class Web::Admin::CategoriesController < Web::Admin::ApplicationController
 
   def destroy
     category = Category.find params[:id]
-    authorize [:admin, category]
 
     if category.destroy
       redirect_to admin_categories_path, notice: t('.success')

@@ -7,7 +7,6 @@ class Web::Admin::BulletinsController < Web::Admin::ApplicationController
     @bulletins = Bulletin.under_moderation
                          .by_recently_created
                          .page(params[:page]).per(10)
-    authorize [:admin, @bulletins]
   end
 
   def index
@@ -15,12 +14,10 @@ class Web::Admin::BulletinsController < Web::Admin::ApplicationController
                      .page(params[:page])
                      .ransack(params[:q])
     @bulletins = @query.result
-    authorize([:admin, @bulletins])
   end
 
   def archive
     bulletin = Bulletin.find params[:id]
-    authorize bulletin
     redirect_path = params[:moderation] ? admin_root_path : admin_bulletins_path
     if bulletin.archive!
       redirect_to redirect_path, notice: t('web.bulletins.flash_states.archived')

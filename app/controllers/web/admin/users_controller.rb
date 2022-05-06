@@ -2,10 +2,10 @@
 
 class Web::Admin::UsersController < Web::Admin::ApplicationController
   after_action :verify_authorized
+  skip_before_action :authorize_admin, only: :destroy
 
   def index
     @users = User.all.page(params[:page]).per(10)
-    authorize [:admin, @users]
   end
 
   def destroy
