@@ -15,7 +15,7 @@ class Web::Admin::CategoriesController < Web::Admin::ApplicationController
     if @category.save
       redirect_to admin_categories_path, notice: t('.success')
     else
-      flash.now[:alert] = t('.error')
+      flash.now[:alert] = @category.errors.full_messages.to_sentence
       render :new, status: :unprocessable_entity
     end
   end
@@ -30,7 +30,7 @@ class Web::Admin::CategoriesController < Web::Admin::ApplicationController
     if @category.update category_params
       redirect_to admin_categories_path, notice: t('.success')
     else
-      flash.now[:alert] = t('.error')
+      flash.now[:alert] = @category.errors.full_messages.to_sentence
       render :edit, status: :unprocessable_entity
     end
   end
