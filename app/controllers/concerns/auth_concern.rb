@@ -6,7 +6,7 @@ module AuthConcern
   end
 
   def sign_out
-    reset_sessions
+    reset_session
   end
 
   def current_user
