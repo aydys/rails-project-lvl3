@@ -89,6 +89,7 @@ ru:
           reset: Сброс
         index:
           header: Мои объявления
+          add_bulletin: Добавить объявление
           title: Название
           state: Состояние
           date: Дата публикации

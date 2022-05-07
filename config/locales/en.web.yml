@@ -89,6 +89,7 @@ en:
           reset: Reset
         index:
           header: My bulletins
+          add_bulletin: Add bulletin
           title: Title
           state: State
           date: Date
