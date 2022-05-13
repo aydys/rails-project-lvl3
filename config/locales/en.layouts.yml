@@ -9,3 +9,10 @@ en:
         my_bulletins: My bulletins
         add: Add
         admin: Admin
+    web:
+      admin:
+        sidebar:
+          moderation: Bulletins on moderation
+          bulletins: Bulletins
+          categories: Categories
+          users: Users

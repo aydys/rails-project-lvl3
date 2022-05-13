@@ -9,3 +9,10 @@ ru:
         my_bulletins: Мои объявления
         add: Добавить
         admin: Админка
+    web:
+      admin:
+        sidebar:
+          moderation: Объявления на модерации
+          bulletins: Все объявления
+          categories: Все категории
+          users: Пользователи
