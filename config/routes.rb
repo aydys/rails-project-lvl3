@@ -7,17 +7,23 @@ Rails.application.routes.draw do
     get 'auth/:provider/callback', to: 'auth#callback', as: :callback_auth
 
     resource :session, only: %i[destroy]
-    resources :bulletins, except: :destroy
-    patch '/bulletins/:id/to_moderate', to: 'bulletins#to_moderate', as: 'moderate_bulletin'
-    patch '/bulletins/:id/reject', to: 'bulletins#reject', as: 'reject_admin_bulletin'
-    patch '/bulletins/:id/publish', to: 'bulletins#publish', as: 'publish_admin_bulletin'
-    patch '/bulletins/:id/archive', to: 'bulletins#archive', as: 'archive_bulletin'
-    patch 'admin/bulletins/:id/archive', to: 'admin/bulletins#archive', as: 'archive_admin_bulletin'
+    resources :bulletins, except: :destroy do
+      member do
+        patch :moderate
+        patch :archive
+      end
+    end
 
     namespace :admin do
       root 'bulletins#moderate'
 
-      resources :bulletins, only: :index
+      resources :bulletins, only: :index do
+        member do
+          patch :archive
+          patch :reject
+          patch :publish
+        end
+      end
       resources :users, only: %i[index destroy]
       resources :categories, except: %i[show]
     end

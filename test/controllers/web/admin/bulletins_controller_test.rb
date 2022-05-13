@@ -33,4 +33,23 @@ class Web::Admin::BulletinsControllerTest < ActionDispatch::IntegrationTest
       get admin_root_url
     end
   end
+
+  test 'should change state from under_moderation to published' do
+    test_state_admin(:under_moderation, 'publish', 'published')
+  end
+
+  test 'should change state from under_moderation to reject' do
+    test_state_admin(:under_moderation, 'reject', 'rejected')
+  end
+
+  private
+
+  def test_state_admin(prev_state_bulletin, event, next_state)
+    bulletin = bulletins prev_state_bulletin
+    sign_in users :admin
+    patch_with_referer send("#{event}_admin_bulletin_url", bulletin),
+                       { bulletin: @attrs, redirect_path: admin_root_url }
+    bulletin.reload
+    assert { bulletin.send("#{next_state}?") }
+  end
 end
