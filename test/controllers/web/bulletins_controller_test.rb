@@ -80,29 +80,34 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should change state to archive from draft' do
-    test_state(:on_draft, 'archive', 'archived')
+    bulletin = bulletins :on_draft
+    sign_in @user
+    patch archive_bulletin_url(bulletin), params: { bulletin: @attrs }
+    bulletin.reload
+    assert { bulletin.archived? }
   end
 
   test 'should change state to archive from under_moderation' do
-    test_state(:under_moderation, 'archive', 'archived')
+    bulletin = bulletins :under_moderation
+    sign_in @user
+    patch archive_bulletin_url(bulletin), params: { bulletin: @attrs }
+    bulletin.reload
+    assert { bulletin.archived? }
   end
 
   test 'should change state to archive from rejected' do
-    test_state(:rejected, 'archive', 'archived')
+    bulletin = bulletins :rejected
+    sign_in @user
+    patch archive_bulletin_url(bulletin), params: { bulletin: @attrs }
+    bulletin.reload
+    assert { bulletin.archived? }
   end
 
   test 'should change state to archive from published' do
-    test_state(:published, 'archive', 'archived')
-  end
-
-  private
-
-  def test_state(prev_state_bulletin, event, next_state)
-    bulletin = bulletins prev_state_bulletin
+    bulletin = bulletins :published
     sign_in @user
-    patch_with_referer send("#{event}_bulletin_url", bulletin),
-                       { bulletin: @attrs, redirect_path: profile_url }
+    patch archive_bulletin_url(bulletin), params: { bulletin: @attrs }
     bulletin.reload
-    assert { bulletin.send("#{next_state}?") }
+    assert { bulletin.archived? }
   end
 end
