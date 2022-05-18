@@ -32,3 +32,4 @@
 en:
   success: Successfully
   failed: Failed to execute command
+  fail_authorization: You are not authorized to perform this action
