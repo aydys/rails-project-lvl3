@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Web::Admin::UsersController < Web::Admin::ApplicationController
-  after_action :verify_authorized
   skip_before_action :authorize_admin, only: :destroy
 
   def index

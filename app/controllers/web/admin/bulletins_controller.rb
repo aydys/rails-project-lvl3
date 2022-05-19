@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Web::Admin::BulletinsController < Web::Admin::ApplicationController
-  after_action :verify_authorized
   before_action :find_bulletin, only: :archive
 
   def index
