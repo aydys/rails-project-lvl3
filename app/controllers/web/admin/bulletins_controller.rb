@@ -11,11 +11,10 @@ class Web::Admin::BulletinsController < Web::Admin::ApplicationController
   end
 
   def archive
-    redirect_path = params[:moderation] ? admin_root_path : admin_bulletins_path
     if @bulletin.archive!
-      redirect_to redirect_path, notice: t('web.bulletins.flash_states.archived')
+      redirect_back(fallback: admin_root_path, notice: t('web.bulletins.flash_states.archived'))
     else
-      redirect_to redirect_path, alert: t('web.bulletins.flash_states.failed')
+      redirect_back(fallback: admin_root_path, alert: t('web.bulletins.flash_states.failed'))
     end
   end
 
