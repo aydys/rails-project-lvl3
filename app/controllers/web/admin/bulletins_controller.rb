@@ -31,7 +31,6 @@ class Web::Admin::BulletinsController < Web::Admin::ApplicationController
     @bulletin = find_bulletin
     return unless @bulletin.send("may_#{event}?")
 
-    authorize @bulletin
     if @bulletin.send("#{event}!")
       redirect_to admin_root_path, notice: t("web.bulletins.flash_states.#{reached_state}")
     else
