@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class Web::Admin::BulletinsController < Web::Admin::ApplicationController
-  before_action :find_bulletin, only: :archive
-
   def index
     @query = Bulletin.by_recently_created
                      .page(params[:page])
@@ -11,6 +9,7 @@ class Web::Admin::BulletinsController < Web::Admin::ApplicationController
   end
 
   def archive
+    @bulletin = find_bulletin
     if @bulletin.archive!
       redirect_back(fallback: admin_root_path, notice: t('web.bulletins.flash_states.archived'))
     else
@@ -29,7 +28,7 @@ class Web::Admin::BulletinsController < Web::Admin::ApplicationController
   private
 
   def set_state(event, reached_state)
-    find_bulletin
+    @bulletin = find_bulletin
     return unless @bulletin.send("may_#{event}?")
 
     authorize @bulletin
@@ -41,6 +40,6 @@ class Web::Admin::BulletinsController < Web::Admin::ApplicationController
   end
 
   def find_bulletin
-    @bulletin = Bulletin.find params[:id]
+    Bulletin.find params[:id]
   end
 end

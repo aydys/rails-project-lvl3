@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class Web::BulletinsController < Web::ApplicationController
-  after_action :verify_authorized, except: %i[index show]
-  before_action :find_bulletin, only: %i[show edit update]
+  after_action :verify_authorized,
+               only: %i[new create edit update moderate archive]
 
   def index
     @query = Bulletin.published
@@ -28,13 +28,17 @@ class Web::BulletinsController < Web::ApplicationController
     end
   end
 
-  def show; end
+  def show
+    @bulletin = find_bulletin
+  end
 
   def edit
+    @bulletin = find_bulletin
     authorize @bulletin
   end
 
   def update
+    @bulletin = find_bulletin
     authorize @bulletin
     if @bulletin.update bulletin_params
       redirect_to profile_path, notice: t('.update')
@@ -55,11 +59,11 @@ class Web::BulletinsController < Web::ApplicationController
   private
 
   def find_bulletin
-    @bulletin = Bulletin.find params[:id]
+    Bulletin.find params[:id]
   end
 
   def set_state(event, reached_state)
-    find_bulletin
+    @bulletin = find_bulletin
     return unless @bulletin.send("may_#{event}?")
 
     authorize @bulletin
