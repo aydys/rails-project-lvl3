@@ -25,11 +25,13 @@ Rails.application.routes.draw do
         end
       end
       resources :users, only: %i[index destroy]
-      resources :categories, except: %i[show]
+      resources :categories, except: :show
     end
 
-    namespace :profile do
-      get '/', to: 'bulletins#index'
-    end
+    resource :profile, only: :show
+
+    # namespace :profile do
+    #   get '/', to: 'bulletins#index'
+    # end
   end
 end

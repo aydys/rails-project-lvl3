@@ -80,22 +80,21 @@ ru:
         destroy:
           success: Пользователь удален
           error: Не удалось удалить пользователя
-    profile:
-      bulletins:
-        search:
-          by_title: Искать по названию объявления
-          by_state: Выбрать состояние
-          search: Искать
-          reset: Сброс
-        index:
-          header: Мои объявления
-          add_bulletin: Добавить объявление
-          title: Название
-          state: Состояние
-          date: Дата публикации
-          actions: Действия
-          show: Показать
-          edit: Редактировать
-          moderate: На модерацию
-          archive: В архив
-          confirm_archive: Потвердить архивацию
+    profiles:
+      search:
+        by_title: Искать по названию объявления
+        by_state: Выбрать состояние
+        search: Искать
+        reset: Сброс
+      show:
+        header: Мои объявления
+        add_bulletin: Добавить объявление
+        title: Название
+        state: Состояние
+        date: Дата публикации
+        actions: Действия
+        show: Показать
+        edit: Редактировать
+        moderate: На модерацию
+        archive: В архив
+        confirm_archive: Потвердить архивацию

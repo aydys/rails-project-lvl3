@@ -80,22 +80,21 @@ en:
         destroy:
           success: User deleted
           error: Failed to delete user
-    profile:
-      bulletins:
-        search:
-          by_title: Search by bulletin title
-          by_state: Select state
-          search: Search
-          reset: Reset
-        index:
-          header: My bulletins
-          add_bulletin: Add bulletin
-          title: Title
-          state: State
-          date: Date
-          actions: Actions
-          show: Show
-          edit: Edit
-          moderate: Send to moderate
-          archive: Archive
-          confirm_archive: Confirm archive
+    profiles:
+      search:
+        by_title: Search by bulletin title
+        by_state: Select state
+        search: Search
+        reset: Reset
+      show:
+        header: My bulletins
+        add_bulletin: Add bulletin
+        title: Title
+        state: State
+        date: Date
+        actions: Actions
+        show: Show
+        edit: Edit
+        moderate: Send to moderate
+        archive: Archive
+        confirm_archive: Confirm archive
