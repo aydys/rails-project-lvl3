@@ -16,10 +16,9 @@ class Web::Admin::UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'regular user has no access to index' do
-    assert_raises(Pundit::NotAuthorizedError) do
-      sign_in @regular_user
-      get admin_users_url
-    end
+    sign_in @regular_user
+    get admin_users_url
+    assert_redirected_to(root_url)
   end
 
   test 'should destroy user by admin' do
@@ -31,9 +30,8 @@ class Web::Admin::UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'regular user cannot destroy user' do
-    assert_raises(Pundit::NotAuthorizedError) do
-      sign_in @regular_user
-      delete admin_user_url(@user)
-    end
+    sign_in @regular_user
+    delete admin_user_url(@user)
+    assert_redirected_to(root_url)
   end
 end

@@ -19,10 +19,9 @@ class Web::Admin::CategoriesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'regular user has no access to index' do
-    assert_raises(Pundit::NotAuthorizedError) do
-      sign_in @regular_user
-      get admin_categories_url
-    end
+    sign_in @regular_user
+    get admin_categories_url
+    assert_redirected_to root_url
   end
 
   test 'should get new' do
@@ -32,10 +31,9 @@ class Web::Admin::CategoriesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'regular user has no access to new' do
-    assert_raises(Pundit::NotAuthorizedError) do
-      sign_in @regular_user
-      get new_admin_category_url
-    end
+    sign_in @regular_user
+    get new_admin_category_url
+    assert_redirected_to root_url
   end
 
   test 'should create new category' do
@@ -47,10 +45,9 @@ class Web::Admin::CategoriesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'regular user has no access to create' do
-    assert_raises(Pundit::NotAuthorizedError) do
-      sign_in @regular_user
-      post admin_categories_url(params: { category: @attrs })
-    end
+    sign_in @regular_user
+    post admin_categories_url(params: { category: @attrs })
+    assert_redirected_to root_url
   end
 
   test 'should get edit' do
@@ -60,10 +57,9 @@ class Web::Admin::CategoriesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'regular user has no access to edit' do
-    assert_raises(Pundit::NotAuthorizedError) do
-      sign_in @regular_user
-      get edit_admin_category_url @category
-    end
+    sign_in @regular_user
+    get edit_admin_category_url @category
+    assert_redirected_to root_url
   end
 
   test 'should update category' do
@@ -75,10 +71,9 @@ class Web::Admin::CategoriesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'regular user has no access to update' do
-    assert_raises(Pundit::NotAuthorizedError) do
-      sign_in @regular_user
-      patch admin_category_url(@category), params: { category: @attrs }
-    end
+    sign_in @regular_user
+    patch admin_category_url(@category), params: { category: @attrs }
+    assert_redirected_to root_url
   end
 
   test 'admin can destroy category' do
@@ -90,9 +85,8 @@ class Web::Admin::CategoriesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'regular user has no access to delete category' do
-    assert_raises(Pundit::NotAuthorizedError) do
-      sign_in @regular_user
-      delete admin_category_url(@category)
-    end
+    sign_in @regular_user
+    delete admin_category_url(@category)
+    assert_redirected_to root_url
   end
 end

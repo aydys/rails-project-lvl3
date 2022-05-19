@@ -15,10 +15,9 @@ class Web::Admin::BulletinsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'regular user cannt get index' do
-    assert_raises(Pundit::NotAuthorizedError) do
-      sign_in @regular_user
-      get admin_bulletins_url
-    end
+    sign_in @regular_user
+    get admin_bulletins_url
+    assert_redirected_to root_url
   end
 
   test 'should get admin page' do
@@ -27,11 +26,10 @@ class Web::Admin::BulletinsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test 'regular user cannt get admin root page' do
-    assert_raises(Pundit::NotAuthorizedError) do
-      sign_in @regular_user
-      get admin_root_url
-    end
+  test 'regular user cannot get admin root page' do
+    sign_in @regular_user
+    get admin_root_url
+    assert_redirected_to root_url
   end
 
   test 'should change state from under_moderation to published' do

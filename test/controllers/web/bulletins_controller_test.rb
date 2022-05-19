@@ -21,10 +21,9 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test 'guest should raise error from new' do
-    assert_raises(Pundit::NotAuthorizedError) do
-      get new_bulletin_url
-    end
+  test 'guest guest does not have access to new' do
+    get new_bulletin_url
+    assert_redirected_to root_url
   end
 
   test 'should get new' do
@@ -34,9 +33,8 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'guest cant create bulletin' do
-    assert_raises(Pundit::NotAuthorizedError) do
-      post bulletins_url, params: { bulletin: @attrs }
-    end
+    post bulletins_url, params: { bulletin: @attrs }
+    assert_redirected_to root_url
   end
 
   test 'should create bulletin' do
@@ -59,10 +57,9 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test 'guest should raise error from edit' do
-    assert_raises(Pundit::NotAuthorizedError) do
-      get edit_bulletin_url @bulletin
-    end
+  test 'guest guest does not have access to edit' do
+    get edit_bulletin_url @bulletin
+    assert_redirected_to root_url
   end
 
   test 'should update bulletin' do
@@ -74,9 +71,8 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'guest cannot update bulletin' do
-    assert_raises(Pundit::NotAuthorizedError) do
-      patch bulletin_url(@bulletin), params: { bulletin: @attrs }
-    end
+    patch bulletin_url(@bulletin), params: { bulletin: @attrs }
+    assert_redirected_to root_url
   end
 
   test 'should change state to archive from draft' do
