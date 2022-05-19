@@ -1,9 +1,9 @@
-= simple_form_for(@bulletin) do |f|
+= simple_form_for(bulletin) do |f|
   = f.input :title
   = f.input :description
   = f.association :category
   = f.label :image, required: true
-  - if @bulletin.image_attachment
-    = image_tag @bulletin.image, class: 'img-thumbnail mb-2'
+  - if bulletin.image_attachment
+    = image_tag bulletin.image, class: 'img-thumbnail mb-2'
   = f.input :image, as: :file, label: false, input_html: { class: 'form-control-file file form-control' }
   = f.button :submit, class: 'mt-4 btn btn-primary'

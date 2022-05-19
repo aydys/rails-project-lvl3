@@ -7,7 +7,7 @@ main
             .mb-4
               h2 = t('activerecord.models.bulletin.other')
               hr
-            = render 'search'
+            = render 'search', query: @query
             .row.mt-2
               - @bulletins.each do |bulletin|
                 .col-3.pt-2

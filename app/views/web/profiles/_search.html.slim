@@ -1,5 +1,5 @@
 .p-3.bg-light
-  = search_form_for @query, url: profile_path do |f|
+  = search_form_for query, url: profile_path do |f|
     .row.my-2
       .col-6
         .form-group.mb-3
@@ -8,7 +8,7 @@
       .col-4
         .form-group.mb-3
           = f.input :state_eq, as: :select,
-            collection: @states_collection, label: false,
+            collection: states_collection, label: false,
             include_blank: true, class: 'form-control'
           small.form-text.text-muted = t('.by_state')
       .col-2
