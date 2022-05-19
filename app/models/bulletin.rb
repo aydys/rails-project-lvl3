@@ -15,7 +15,7 @@ class Bulletin < ApplicationRecord
 
   scope :by_recently_created, -> { order(created_at: :desc) }
 
-  aasm column: 'state' do
+  aasm column: 'state', whiny_transitions: false do
     state :draft, initial: true
     state :under_moderation
     state :published
