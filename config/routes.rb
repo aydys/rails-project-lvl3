@@ -6,8 +6,8 @@ Rails.application.routes.draw do
     post 'auth/:provider', to: 'auth#request', as: :auth_request
     get 'auth/:provider/callback', to: 'auth#callback', as: :callback_auth
 
-    resource :session, only: %i[destroy]
-    resources :bulletins, except: :destroy do
+    resource :session, only: :destroy
+    resources :bulletins, only: %i[index new create show edit update] do
       member do
         patch :moderate
         patch :archive
@@ -25,13 +25,9 @@ Rails.application.routes.draw do
         end
       end
       resources :users, only: %i[index destroy]
-      resources :categories, except: :show
+      resources :categories, only: %i[index new create edit update destroy]
     end
 
     resource :profile, only: :show
-
-    # namespace :profile do
-    #   get '/', to: 'bulletins#index'
-    # end
   end
 end
