@@ -49,11 +49,11 @@ class Web::BulletinsController < Web::ApplicationController
   end
 
   def moderate
-    set_state(:moderate, 'moderated')
+    change_state(:moderate)
   end
 
   def archive
-    set_state(:archive, 'archived')
+    change_state(:archive)
   end
 
   private
@@ -62,13 +62,13 @@ class Web::BulletinsController < Web::ApplicationController
     Bulletin.find params[:id]
   end
 
-  def set_state(event, reached_state)
+  def change_state(event)
     @bulletin = find_bulletin
     return unless @bulletin.send("may_#{event}?")
 
     authorize @bulletin
     if @bulletin.send("#{event}!")
-      redirect_to profile_path, notice: t("web.bulletins.flash_states.#{reached_state}")
+      redirect_to profile_path, notice: t("web.bulletins.flash_states.#{@bulletin.state}")
     else
       redirect_to profile_path, alert: t('web.bulletins.flash_states.failed')
     end
