@@ -2,7 +2,7 @@
 
 require 'test_helper'
 
-class BulletinFlowsTest < ActionDispatch::IntegrationTest
+class ProfileFlowsTest < ActionDispatch::IntegrationTest
   setup do
     @user = users :one
   end

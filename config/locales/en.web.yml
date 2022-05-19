@@ -37,7 +37,8 @@ en:
           show: Show
           archive: Archive
           confirm_archive: Confirm archive
-        moderate:
+      home:
+        index:
           header: Bulletin under moderation
           title: Title
           date: Date

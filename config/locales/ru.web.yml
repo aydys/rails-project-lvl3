@@ -37,7 +37,8 @@ ru:
           show: Показать
           archive: В архив
           confirm_archive: Потвердить архивацию
-        moderate:
+      home:
+        index:
           header: Объявления на модерацию
           title: Название
           date: Дата публикации

@@ -4,12 +4,6 @@ class Web::Admin::BulletinsController < Web::Admin::ApplicationController
   after_action :verify_authorized
   before_action :find_bulletin, only: :archive
 
-  def moderate
-    @bulletins = Bulletin.under_moderation
-                         .by_recently_created
-                         .page(params[:page]).per(10)
-  end
-
   def index
     @query = Bulletin.by_recently_created
                      .page(params[:page])

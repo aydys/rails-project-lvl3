@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     end
 
     namespace :admin do
-      root 'bulletins#moderate'
+      root 'home#index'
 
       resources :bulletins, only: :index do
         member do
