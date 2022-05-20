@@ -17,7 +17,7 @@ h1.h2.mb-4 = t('activerecord.models.bulletin.other')
           td = time_ago_in_words(bulletin.created_at)
           td
             = link_to t('.show'), bulletin_path(bulletin), class: 'me-2'
-            - unless bulletin.archived?
+            - if bulletin.may_archive?
               = link_to t('.archive'), archive_admin_bulletin_path(bulletin), class: 'me-2 text-danger',
                 method: :patch, data: { confirm: t('.confirm_archive') }
   = paginate @bulletins, theme: 'bootstrap-5'

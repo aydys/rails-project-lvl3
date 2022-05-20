@@ -14,7 +14,8 @@ h1.h2.mb-4 = t('activerecord.models.user.other')
           td = user.email
           td = user.admin? ? t('.yes') : t('.no')
           td
-            = link_to t('.destroy'), admin_user_path(user),
-              method: :delete, data: { confirm: t('.confirm') },
-              class: 'text-danger'
+            - policy([:admin, user]).destroy?
+              = link_to t('.destroy'), admin_user_path(user),
+                method: :delete, data: { confirm: t('.confirm') },
+                class: 'text-danger'
   = paginate @users, theme: 'bootstrap-5'
