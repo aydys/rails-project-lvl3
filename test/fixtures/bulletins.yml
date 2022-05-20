@@ -15,7 +15,7 @@ bulletin1:
 bulletin2:
   title: Title_2
   description: MyText_2
-  user: two
+  user: admin
   category: category2
 on_draft:
   <<: *DEFAULTS

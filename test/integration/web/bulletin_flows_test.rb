@@ -4,8 +4,9 @@ require 'test_helper'
 
 class BulletinFlowsTest < ActionDispatch::IntegrationTest
   setup do
-    @bulletin = bulletins :bulletin1
+    @bulletin = bulletins :bulletin2
     @admin = users :admin
+    @published_bulletin = bulletins :published
   end
 
   test 'should get main page' do
@@ -16,9 +17,9 @@ class BulletinFlowsTest < ActionDispatch::IntegrationTest
   end
 
   test 'should get show page' do
-    get bulletin_url @bulletin
+    get bulletin_url(@published_bulletin)
     assert_response :success
-    assert_select 'h2', @bulletin.title
+    assert_select 'h2', @published_bulletin.title
   end
 
   test 'should get new form' do

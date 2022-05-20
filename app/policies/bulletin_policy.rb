@@ -1,35 +1,23 @@
 # frozen_string_literal: true
 
 class BulletinPolicy < ApplicationPolicy
-  def new?
-    create?
-  end
-
-  def create?
-    user
-  end
-
-  def edit?
-    update?
+  def show?
+    if user
+      user.id == record.user_id
+    else
+      record.published?
+    end
   end
 
   def update?
-    user
+    user.id == record.user_id
   end
 
   def moderate?
-    user
+    user.id == record.user_id
   end
 
   def archive?
-    user
-  end
-
-  def publish?
-    user&.admin?
-  end
-
-  def reject?
-    user&.admin?
+    user.id == record.user_id
   end
 end

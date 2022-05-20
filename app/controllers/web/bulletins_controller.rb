@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
 class Web::BulletinsController < Web::ApplicationController
+  before_action :authenticate_user,
+                only: %i[new create edit update moderate archive]
   after_action :verify_authorized,
-               only: %i[new create edit update moderate archive]
+               only: %i[show update moderate archive]
 
   def index
     @query = Bulletin.published
@@ -14,12 +16,10 @@ class Web::BulletinsController < Web::ApplicationController
 
   def new
     @bulletin = Bulletin.new
-    authorize @bulletin
   end
 
   def create
     @bulletin = Bulletin.new bulletin_params.merge(user_id: current_user&.id)
-    authorize @bulletin
     if @bulletin.save
       redirect_to profile_path, notice: t('.success')
     else
@@ -30,11 +30,11 @@ class Web::BulletinsController < Web::ApplicationController
 
   def show
     @bulletin = find_bulletin
+    authorize @bulletin
   end
 
   def edit
     @bulletin = find_bulletin
-    authorize @bulletin
   end
 
   def update
