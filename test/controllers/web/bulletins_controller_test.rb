@@ -40,8 +40,7 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
   test 'should create bulletin' do
     sign_in @user
     post bulletins_url, params: { bulletin: @attrs }
-    bulletin = Bulletin.find_by title: @attrs[:title]
-    assert { bulletin.description == @attrs[:description] }
+    assert { Bulletin.exists? @attrs.except(:image) }
     assert_redirected_to profile_url
   end
 
@@ -65,8 +64,7 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
   test 'should update bulletin' do
     sign_in @user
     patch bulletin_url(@bulletin), params: { bulletin: @attrs }
-    bulletin = Bulletin.find @bulletin.id
-    assert { bulletin.title == @attrs[:title] }
+    assert { Bulletin.exists? @attrs.except(:image) }
     assert_redirected_to profile_url
   end
 
@@ -78,7 +76,7 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
   test 'should change state to archive from draft' do
     bulletin = bulletins :on_draft
     sign_in @user
-    patch archive_bulletin_url(bulletin), params: { bulletin: @attrs }
+    patch archive_bulletin_url(bulletin)
     bulletin.reload
     assert { bulletin.archived? }
   end
@@ -86,7 +84,7 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
   test 'should change state to archive from under_moderation' do
     bulletin = bulletins :under_moderation
     sign_in @user
-    patch archive_bulletin_url(bulletin), params: { bulletin: @attrs }
+    patch archive_bulletin_url(bulletin)
     bulletin.reload
     assert { bulletin.archived? }
   end
@@ -94,7 +92,7 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
   test 'should change state to archive from rejected' do
     bulletin = bulletins :rejected
     sign_in @user
-    patch archive_bulletin_url(bulletin), params: { bulletin: @attrs }
+    patch archive_bulletin_url(bulletin)
     bulletin.reload
     assert { bulletin.archived? }
   end
@@ -102,7 +100,7 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
   test 'should change state to archive from published' do
     bulletin = bulletins :published
     sign_in @user
-    patch archive_bulletin_url(bulletin), params: { bulletin: @attrs }
+    patch archive_bulletin_url(bulletin)
     bulletin.reload
     assert { bulletin.archived? }
   end

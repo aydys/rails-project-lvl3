@@ -39,8 +39,4 @@ class ActionDispatch::IntegrationTest
   def current_user
     @current_user ||= User.find_by(id: session[:user_id])
   end
-
-  def patch_with_referer(url, params)
-    patch url, params: params, headers: { Referer: 'stub' }
-  end
 end

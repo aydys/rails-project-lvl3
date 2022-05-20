@@ -39,8 +39,7 @@ class Web::Admin::CategoriesControllerTest < ActionDispatch::IntegrationTest
   test 'should create new category' do
     sign_in @admin
     post admin_categories_url(params: { category: @attrs })
-    category = Category.find_by(name: @attrs[:name])
-    assert category
+    assert { Category.exists? @attrs }
     assert_redirected_to admin_categories_url
   end
 
@@ -65,8 +64,7 @@ class Web::Admin::CategoriesControllerTest < ActionDispatch::IntegrationTest
   test 'should update category' do
     sign_in @admin
     patch admin_category_url(@category), params: { category: @attrs }
-    category = Category.find_by(name: @attrs[:name])
-    assert category
+    assert { Category.exists? @attrs }
     assert_redirected_to admin_categories_path
   end
 

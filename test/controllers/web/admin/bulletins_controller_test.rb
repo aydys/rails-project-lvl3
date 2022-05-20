@@ -35,7 +35,7 @@ class Web::Admin::BulletinsControllerTest < ActionDispatch::IntegrationTest
   test 'should change state from under_moderation to published' do
     bulletin = bulletins :under_moderation
     sign_in users :admin
-    patch publish_admin_bulletin_url(bulletin), params: { bulletin: @attrs }
+    patch publish_admin_bulletin_url(bulletin)
     bulletin.reload
     assert { bulletin.published? }
   end
@@ -43,7 +43,7 @@ class Web::Admin::BulletinsControllerTest < ActionDispatch::IntegrationTest
   test 'should change state from under_moderation to reject' do
     bulletin = bulletins :under_moderation
     sign_in users :admin
-    patch_with_referer reject_admin_bulletin_url(bulletin), params: { bulletin: @attrs }
+    patch reject_admin_bulletin_url(bulletin)
     bulletin.reload
     assert { bulletin.rejected? }
   end
