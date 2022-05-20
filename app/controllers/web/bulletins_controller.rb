@@ -35,6 +35,7 @@ class Web::BulletinsController < Web::ApplicationController
 
   def edit
     @bulletin = find_bulletin
+    authorize @bulletin
   end
 
   def update
