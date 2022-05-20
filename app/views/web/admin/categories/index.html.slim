@@ -16,5 +16,5 @@ h1.h2.mb-4 = t('activerecord.models.category.other')
             = link_to t('.edit'), edit_admin_category_path(category),
               class: 'me-1'
             = link_to t('.destroy'), admin_category_path(category),
-              method: :delete, confirmation: true, class: 'text-danger me-1'
+              method: :delete, data: { confirm: t('.confirm') }, class: 'text-danger me-1'
   = paginate @categories, theme: 'bootstrap-5'
