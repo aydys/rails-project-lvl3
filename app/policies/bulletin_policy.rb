@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 class BulletinPolicy < ApplicationPolicy
+  def edit?
+    user.id == record.user_id
+  end
+
   def show?
     if user
       user.id == record.user_id
