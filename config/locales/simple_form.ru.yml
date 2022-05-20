@@ -1,0 +1,7 @@
+ru:
+  simple_form:
+    hints:
+      q:
+        title_cont: Искать по названию объявления
+        state_eq: Выбрать состояние
+        category_id_eq: Выбрать категорию

@@ -2,6 +2,9 @@
 
 class Web::Admin::BulletinsController < Web::Admin::ApplicationController
   def index
+    @states = Bulletin.aasm.states.map do |state|
+      [state.display_name, state.name]
+    end
     @query = Bulletin.by_recently_created
                      .page(params[:page])
                      .ransack(params[:q])
