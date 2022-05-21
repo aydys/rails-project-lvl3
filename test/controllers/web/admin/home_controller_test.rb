@@ -8,4 +8,10 @@ class Web::Admin::HomeControllerTest < ActionDispatch::IntegrationTest
     get admin_root_url
     assert_response :success
   end
+
+  test 'regular user cannot get admin root page' do
+    sign_in users(:one)
+    get admin_root_url
+    assert_redirected_to root_url
+  end
 end

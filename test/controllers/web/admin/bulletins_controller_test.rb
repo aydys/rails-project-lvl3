@@ -20,18 +20,6 @@ class Web::Admin::BulletinsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to root_url
   end
 
-  test 'should get admin page' do
-    sign_in @admin_user
-    get admin_root_url
-    assert_response :success
-  end
-
-  test 'regular user cannot get admin root page' do
-    sign_in @regular_user
-    get admin_root_url
-    assert_redirected_to root_url
-  end
-
   test 'should change state from under_moderation to published' do
     bulletin = bulletins :under_moderation
     sign_in users :admin
