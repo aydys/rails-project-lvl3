@@ -45,7 +45,10 @@ class Web::Admin::CategoriesControllerTest < ActionDispatch::IntegrationTest
 
   test 'regular user has no access to create' do
     sign_in @regular_user
+    before_count = Category.all.size
     post admin_categories_url(params: { category: @attrs })
+    after_count = Category.all.size
+    assert { before_count == after_count }
     assert_redirected_to root_url
   end
 
@@ -70,7 +73,10 @@ class Web::Admin::CategoriesControllerTest < ActionDispatch::IntegrationTest
 
   test 'regular user has no access to update' do
     sign_in @regular_user
+    before_category = Category.find_by(@attrs)
     patch admin_category_url(@category), params: { category: @attrs }
+    after_category = Category.find_by(@attrs)
+    assert { before_category == after_category }
     assert_redirected_to root_url
   end
 
@@ -85,6 +91,7 @@ class Web::Admin::CategoriesControllerTest < ActionDispatch::IntegrationTest
   test 'regular user has no access to delete category' do
     sign_in @regular_user
     delete admin_category_url(@category)
+    assert { Category.exists? id: @category.id }
     assert_redirected_to root_url
   end
 end

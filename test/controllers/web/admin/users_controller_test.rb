@@ -32,6 +32,7 @@ class Web::Admin::UsersControllerTest < ActionDispatch::IntegrationTest
   test 'regular user cannot destroy user' do
     sign_in @regular_user
     delete admin_user_url(@user)
+    assert { User.exists? id: @user.id }
     assert_redirected_to(root_url)
   end
 end

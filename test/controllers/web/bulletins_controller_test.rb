@@ -32,8 +32,11 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test 'guest cant create bulletin' do
+  test 'guest cannot create bulletin' do
+    before_count = Bulletin.all.size
     post bulletins_url, params: { bulletin: @attrs }
+    after_count = Bulletin.all.size
+    assert { before_count == after_count }
     assert_redirected_to root_url
   end
 
@@ -75,7 +78,10 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'guest cannot update bulletin' do
+    before_bulletin = Bulletin.find_by(@attrs.except(:image))
     patch bulletin_url(@bulletin), params: { bulletin: @attrs }
+    after_bulletin = Bulletin.find_by(@attrs.except(:image))
+    assert { before_bulletin == after_bulletin }
     assert_redirected_to root_url
   end
 
