@@ -90,31 +90,27 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
     bulletin = bulletins :on_draft
     sign_in @user
     patch archive_bulletin_url(bulletin)
-    bulletin.reload
-    assert { bulletin.archived? }
+    assert_response :redirect
   end
 
   test 'should change state to archive from under_moderation' do
     bulletin = bulletins :under_moderation
     sign_in @user
     patch archive_bulletin_url(bulletin)
-    bulletin.reload
-    assert { bulletin.archived? }
+    assert_response :redirect
   end
 
   test 'should change state to archive from rejected' do
     bulletin = bulletins :rejected
     sign_in @user
     patch archive_bulletin_url(bulletin)
-    bulletin.reload
-    assert { bulletin.archived? }
+    assert_response :redirect
   end
 
   test 'should change state to archive from published' do
     bulletin = bulletins :published
     sign_in @user
     patch archive_bulletin_url(bulletin)
-    bulletin.reload
-    assert { bulletin.archived? }
+    assert_response :redirect
   end
 end

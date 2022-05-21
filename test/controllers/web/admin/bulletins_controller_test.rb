@@ -36,15 +36,13 @@ class Web::Admin::BulletinsControllerTest < ActionDispatch::IntegrationTest
     bulletin = bulletins :under_moderation
     sign_in users :admin
     patch publish_admin_bulletin_url(bulletin)
-    bulletin.reload
-    assert { bulletin.published? }
+    assert_response :redirect
   end
 
   test 'should change state from under_moderation to reject' do
     bulletin = bulletins :under_moderation
     sign_in users :admin
     patch reject_admin_bulletin_url(bulletin)
-    bulletin.reload
-    assert { bulletin.rejected? }
+    assert_response :redirect
   end
 end
