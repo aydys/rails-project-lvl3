@@ -50,6 +50,12 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test 'should show anothers bulletin for admin' do
+    sign_in users(:admin)
+    get bulletin_url(bulletins(:bulletin1))
+    assert_response :success
+  end
+
   test 'should get edit' do
     sign_in @user
     get edit_bulletin_url @bulletin

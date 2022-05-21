@@ -6,10 +6,12 @@ class BulletinPolicy < ApplicationPolicy
   end
 
   def show?
-    if user
-      user.id == record.user_id
+    return record.published? unless user
+
+    if user.admin?
+      true
     else
-      record.published?
+      user.id == record.user_id
     end
   end
 
