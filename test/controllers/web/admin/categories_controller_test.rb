@@ -67,7 +67,8 @@ class Web::Admin::CategoriesControllerTest < ActionDispatch::IntegrationTest
   test 'should update category' do
     sign_in @admin
     patch admin_category_url(@category), params: { category: @attrs }
-    assert { Category.exists? @attrs }
+    updated_category = Category.find_by(@attrs)
+    assert { @category.id == updated_category.id }
     assert_redirected_to admin_categories_path
   end
 

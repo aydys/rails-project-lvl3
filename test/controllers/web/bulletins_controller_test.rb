@@ -73,7 +73,8 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
   test 'should update bulletin' do
     sign_in @user
     patch bulletin_url(@bulletin), params: { bulletin: @attrs }
-    assert { Bulletin.exists? @attrs.except(:image) }
+    updated_bulletin = Bulletin.find_by(@attrs.except(:image))
+    assert { @bulletin.id == updated_bulletin.id }
     assert_redirected_to profile_url
   end
 
