@@ -4,7 +4,7 @@ class Web::BulletinsController < Web::ApplicationController
   before_action :authenticate_user,
                 only: %i[new create edit update moderate archive]
   after_action :verify_authorized,
-               only: %i[show update moderate archive]
+               only: %i[show edit update moderate archive]
 
   def index
     @query = Bulletin.published
