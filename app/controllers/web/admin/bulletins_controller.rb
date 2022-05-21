@@ -12,12 +12,7 @@ class Web::Admin::BulletinsController < Web::Admin::ApplicationController
   end
 
   def archive
-    @bulletin = find_bulletin
-    if @bulletin.archive!
-      redirect_back(fallback_location: admin_root_path, notice: t('web.bulletins.flash_states.archived'))
-    else
-      redirect_back(fallback_location: admin_root_path, alert: t('web.bulletins.flash_states.failed'))
-    end
+    change_state(:archive)
   end
 
   def publish
