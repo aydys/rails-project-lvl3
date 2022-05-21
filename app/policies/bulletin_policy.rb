@@ -6,24 +6,18 @@ class BulletinPolicy < ApplicationPolicy
   end
 
   def show?
-    return record.published? unless user
-
-    if user.admin?
-      true
-    else
-      user.id == record.user_id
-    end
+    record.published? || user.admin? || edit?
   end
 
   def update?
-    user.id == record.user_id
+    edit?
   end
 
   def moderate?
-    user.id == record.user_id
+    edit?
   end
 
   def archive?
-    user.id == record.user_id
+    edit?
   end
 end

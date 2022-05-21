@@ -2,6 +2,6 @@
 
 class Admin::UserPolicy < ApplicationPolicy
   def destroy?
-    user.admin? && record.id != user.id
+    record.id != user.id
   end
 end

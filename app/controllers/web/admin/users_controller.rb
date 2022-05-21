@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class Web::Admin::UsersController < Web::Admin::ApplicationController
-  skip_before_action :authorize_admin, only: :destroy
-
   def index
     @users = User.all.page(params[:page]).per(10)
   end
