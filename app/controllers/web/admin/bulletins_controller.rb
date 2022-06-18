@@ -28,9 +28,9 @@ class Web::Admin::BulletinsController < Web::Admin::ApplicationController
 
   def change_state(event)
     @bulletin = find_bulletin
-    return unless @bulletin.send("may_#{event}?")
+    return unless @bulletin.public_send("may_#{event}?")
 
-    if @bulletin.send("#{event}!")
+    if @bulletin.public_send("#{event}!")
       redirect_to admin_root_path, notice: t("web.bulletins.flash_states.#{@bulletin.state}")
     else
       redirect_to admin_root_path, alert: t('web.bulletins.flash_states.failed')
