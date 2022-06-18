@@ -9,9 +9,10 @@ class Web::BulletinsController < Web::ApplicationController
   def index
     @query = Bulletin.published
                      .by_recently_created
-                     .page(params[:page])
                      .ransack(params[:q])
-    @bulletins = @query.result.includes(:category)
+    @bulletins = @query
+                 .result.includes(:category)
+                 .page(params[:page])
   end
 
   def new

@@ -6,9 +6,10 @@ class Web::Admin::BulletinsController < Web::Admin::ApplicationController
       [state.display_name, state.name]
     end
     @query = Bulletin.by_recently_created
-                     .page(params[:page])
                      .ransack(params[:q])
-    @bulletins = @query.result
+    @bulletins = @query
+                 .result
+                 .page(params[:page])
   end
 
   def archive

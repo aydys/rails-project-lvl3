@@ -11,9 +11,10 @@ class Web::ProfilesController < Web::ApplicationController
 
     @query = current_user.bulletins
                          .by_recently_created
-                         .page(params[:page])
                          .ransack(params[:q])
-    @bulletins = @query.result
+    @bulletins = @query
+                 .result
+                 .page(params[:page])
   end
 end
 # end
