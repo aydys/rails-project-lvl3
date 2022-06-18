@@ -14,6 +14,6 @@ class ApplicationController < ActionController::Base
   end
 
   def record_not_found
-    render file: Rails.root.join('public/404.html'), status: :not_found
+    render file: Rails.public_path('public/404.html'), status: :not_found
   end
 end
